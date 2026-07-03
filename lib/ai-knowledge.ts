@@ -50,10 +50,10 @@ const knowledgeBase: KnowledgeEntry[] = [
     },
   },
   {
-    keywords: ["联系", "contact", "邮箱", "email", "电话", "phone", "github"],
+    keywords: ["联系", "contact", "邮箱", "email", "github", "微信", "wechat"],
     answer: {
-      zh: `联系方式：\n\n- 📧 Email: ${personalInfo.email}\n- 📱 Phone: ${personalInfo.phone}\n- 🔗 GitHub: ${personalInfo.github}\n- 💼 LinkedIn: ${personalInfo.linkedin}\n\n也可以通过页面底部的 Contact 区域找到微信二维码。`,
-      en: `Contact info:\n\n- 📧 Email: ${personalInfo.email}\n- 📱 Phone: ${personalInfo.phone}\n- 🔗 GitHub: ${personalInfo.github}\n- 💼 LinkedIn: ${personalInfo.linkedin}\n\nWeChat QR code is available in the Contact section.`,
+      zh: `联系方式：\n\n- 📧 Email: ${personalInfo.email}\n- 🔗 GitHub: ${personalInfo.github}\n- 📘 Facebook: ${personalInfo.facebook}\n- 💬 微信：页面底部 Contact 区域扫码添加\n\n建议优先邮件或微信联系。`,
+      en: `Contact info:\n\n- 📧 Email: ${personalInfo.email}\n- 🔗 GitHub: ${personalInfo.github}\n- 📘 Facebook: ${personalInfo.facebook}\n- 💬 WeChat: scan QR code in the Contact section\n\nEmail or WeChat is preferred.`,
     },
   },
   {

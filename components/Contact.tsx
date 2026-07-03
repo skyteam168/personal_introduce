@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { SocialIcon } from "@/components/icons/SocialIcons";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -16,22 +16,16 @@ const contactLinks = [
     value: personalInfo.email,
   },
   {
-    key: "phone" as const,
-    icon: "phone" as const,
-    href: `tel:${personalInfo.phone}`,
-    value: personalInfo.phone,
-  },
-  {
     key: "github" as const,
     icon: "github" as const,
     href: personalInfo.github,
     value: "GitHub",
   },
   {
-    key: "linkedin" as const,
-    icon: "linkedin" as const,
-    href: personalInfo.linkedin,
-    value: "LinkedIn",
+    key: "facebook" as const,
+    icon: "facebook" as const,
+    href: personalInfo.facebook,
+    value: "Facebook",
   },
 ];
 
@@ -53,7 +47,7 @@ export function Contact() {
               <motion.a
                 key={link.key}
                 href={link.href}
-                target={link.key === "email" || link.key === "phone" ? undefined : "_blank"}
+                target={link.key === "email" ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -63,9 +57,8 @@ export function Contact() {
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background text-foreground/70">
                   {link.icon === "mail" && <Mail className="h-5 w-5" />}
-                  {link.icon === "phone" && <Phone className="h-5 w-5" />}
                   {link.icon === "github" && <SocialIcon name="github" />}
-                  {link.icon === "linkedin" && <SocialIcon name="linkedin" />}
+                  {link.icon === "facebook" && <SocialIcon name="facebook" />}
                 </div>
                 <div>
                   <p className="text-xs text-muted">{t.contact[link.key]}</p>
@@ -98,9 +91,7 @@ export function Contact() {
                 unoptimized
               />
             </div>
-            <p className="mt-3 text-xs text-muted">
-              Scan to connect
-            </p>
+            <p className="mt-3 text-xs text-muted">{t.contact.wechatHint}</p>
           </motion.div>
         </div>
       </div>

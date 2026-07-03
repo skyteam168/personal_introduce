@@ -69,12 +69,12 @@ export const translations = {
     contact: {
       label: "Contact",
       title: "联系方式",
-      subtitle: "期待与您交流基础设施、运维管理与 AI 技术的实践",
+      subtitle: "欢迎通过邮件或微信联系，我会在 24 小时内回复",
       email: "邮箱",
-      phone: "电话",
       github: "GitHub",
-      linkedin: "LinkedIn",
+      facebook: "Facebook",
       wechat: "微信",
+      wechatHint: "扫码添加，优先沟通渠道",
     },
     footer: {
       rights: "保留所有权利",
@@ -163,12 +163,12 @@ export const translations = {
     contact: {
       label: "Contact",
       title: "Get in Touch",
-      subtitle: "Let's discuss infrastructure, IT operations & AI engineering",
+      subtitle: "Reach out via email or WeChat — I typically reply within 24 hours",
       email: "Email",
-      phone: "Phone",
       github: "GitHub",
-      linkedin: "LinkedIn",
+      facebook: "Facebook",
       wechat: "WeChat",
+      wechatHint: "Scan to connect — preferred channel",
     },
     footer: {
       rights: "All rights reserved",

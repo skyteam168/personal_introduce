@@ -39,9 +39,8 @@ export interface TechProficiency {
 
 export const personalInfo = {
   email: "jamesyang@benlutech.com",
-  phone: "+86 18206827894",
   github: "https://github.com/skyteam168",
-  linkedin: "https://www.linkedin.com/in/james-yang-88a940413/",
+  facebook: "https://www.facebook.com/profile.php?id=100009203928990",
   wechatQr: "/images/wechatqr.png",
   resumePdf: "/resume.pdf",
 };
