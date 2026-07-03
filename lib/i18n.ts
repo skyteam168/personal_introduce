@@ -7,9 +7,9 @@ export const translations = {
       skills: "技能",
       experience: "经历",
       projects: "项目",
+      blog: "博客",
       certificates: "证书",
       contact: "联系",
-      download: "下载简历",
     },
     hero: {
       name: "杨晓伟",
@@ -17,7 +17,7 @@ export const translations = {
       tagline: "Building AI Infrastructure for the Next Generation.",
       tags: ["Linux", "Network", "Server Ops", "AI Agent", "Python", "Cloud"],
       cta: "查看项目",
-      ctaSecondary: "下载 PDF",
+      ctaSecondary: "阅读博客",
     },
     about: {
       label: "About Me",
@@ -101,9 +101,9 @@ export const translations = {
       skills: "Skills",
       experience: "Experience",
       projects: "Projects",
+      blog: "Blog",
       certificates: "Certificates",
       contact: "Contact",
-      download: "Resume",
     },
     hero: {
       name: "Xiaowei Yang",
@@ -111,7 +111,7 @@ export const translations = {
       tagline: "Building AI Infrastructure for the Next Generation.",
       tags: ["Linux", "Network", "Server Ops", "AI Agent", "Python", "Cloud"],
       cta: "View Projects",
-      ctaSecondary: "Download PDF",
+      ctaSecondary: "Read Blog",
     },
     about: {
       label: "About Me",

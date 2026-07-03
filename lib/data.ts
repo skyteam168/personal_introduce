@@ -43,7 +43,6 @@ export const personalInfo = {
   facebook: "https://www.facebook.com/profile.php?id=100009203928990",
   linkedin: "https://www.linkedin.com/in/james-yang-88a940413/",
   wechatQr: "/images/wechatqr.png",
-  resumePdf: "/resume.pdf",
 };
 
 export const skillCategories: Skill["category"][] = [

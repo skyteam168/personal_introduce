@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ArrowDown, Download } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ParticleBackground } from "@/components/ParticleBackground";
-import { personalInfo } from "@/lib/data";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -115,14 +115,12 @@ export function Hero() {
                 {t.hero.cta}
                 <ArrowDown className="h-4 w-4" />
               </a>
-              <a
-                href={personalInfo.resumePdf}
-                download
+              <Link
+                href="/blog"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
               >
-                <Download className="h-4 w-4" />
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
