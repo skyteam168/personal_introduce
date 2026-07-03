@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { SocialIcon } from "@/components/icons/SocialIcons";
@@ -109,18 +110,24 @@ export default async function ProjectPage({ params }: PageProps) {
           )}
         </div>
 
-        {slug === "ai-agent-os" && (
+        {project.screenshots && project.screenshots.length > 0 && (
           <div className="mt-16 rounded-2xl border border-border bg-surface/20 p-8">
-            <h2 className="mb-4 text-xl font-semibold text-foreground">
+            <h2 className="mb-6 text-xl font-semibold text-foreground">
               Project Screenshots
             </h2>
             <div className="grid gap-4 md:grid-cols-2">
-              {[1, 2].map((n) => (
+              {project.screenshots.map((shot) => (
                 <div
-                  key={n}
-                  className="flex aspect-video items-center justify-center rounded-xl border border-dashed border-border bg-background text-sm text-muted"
+                  key={shot.src}
+                  className="overflow-hidden rounded-xl border border-border bg-background"
                 >
-                  Screenshot {n} — Replace with actual image
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt.en}
+                    width={1280}
+                    height={720}
+                    className="h-auto w-full object-cover"
+                  />
                 </div>
               ))}
             </div>

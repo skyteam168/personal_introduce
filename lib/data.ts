@@ -22,6 +22,7 @@ export interface Project {
   video?: string;
   architecture: string[];
   tech: string[];
+  screenshots?: { src: string; alt: { zh: string; en: string } }[];
 }
 
 export interface Certificate {
@@ -159,6 +160,16 @@ export const projects: Project[] = [
       "Result",
     ],
     tech: ["Python", "FastAPI", "Redis", "MCP", "OpenAI", "Claude"],
+    screenshots: [
+      {
+        src: "/images/projects/ai-agent-os/screenshot-1.png",
+        alt: { zh: "AI Agent OS 架构界面", en: "AI Agent OS architecture UI" },
+      },
+      {
+        src: "/images/projects/ai-agent-os/screenshot-2.png",
+        alt: { zh: "AI Agent OS 运行截图", en: "AI Agent OS runtime screenshot" },
+      },
+    ],
   },
   {
     slug: "rag",
