@@ -16,16 +16,22 @@ const contactLinks = [
     value: personalInfo.email,
   },
   {
+    key: "facebook" as const,
+    icon: "facebook" as const,
+    href: personalInfo.facebook,
+    value: "Facebook",
+  },
+  {
     key: "github" as const,
     icon: "github" as const,
     href: personalInfo.github,
     value: "GitHub",
   },
   {
-    key: "facebook" as const,
-    icon: "facebook" as const,
-    href: personalInfo.facebook,
-    value: "Facebook",
+    key: "linkedin" as const,
+    icon: "linkedin" as const,
+    href: personalInfo.linkedin,
+    value: "LinkedIn",
   },
 ];
 
@@ -57,8 +63,9 @@ export function Contact() {
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background text-foreground/70">
                   {link.icon === "mail" && <Mail className="h-5 w-5" />}
-                  {link.icon === "github" && <SocialIcon name="github" />}
-                  {link.icon === "facebook" && <SocialIcon name="facebook" />}
+                  {link.icon !== "mail" && (
+                    <SocialIcon name={link.icon} />
+                  )}
                 </div>
                 <div>
                   <p className="text-xs text-muted">{t.contact[link.key]}</p>

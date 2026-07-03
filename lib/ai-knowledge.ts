@@ -52,8 +52,8 @@ const knowledgeBase: KnowledgeEntry[] = [
   {
     keywords: ["联系", "contact", "邮箱", "email", "github", "微信", "wechat"],
     answer: {
-      zh: `联系方式：\n\n- 📧 Email: ${personalInfo.email}\n- 🔗 GitHub: ${personalInfo.github}\n- 📘 Facebook: ${personalInfo.facebook}\n- 💬 微信：页面底部 Contact 区域扫码添加\n\n建议优先邮件或微信联系。`,
-      en: `Contact info:\n\n- 📧 Email: ${personalInfo.email}\n- 🔗 GitHub: ${personalInfo.github}\n- 📘 Facebook: ${personalInfo.facebook}\n- 💬 WeChat: scan QR code in the Contact section\n\nEmail or WeChat is preferred.`,
+      zh: `联系方式：\n\n- 📧 Email: ${personalInfo.email}\n- 📘 Facebook: ${personalInfo.facebook}\n- 🔗 GitHub: ${personalInfo.github}\n- 💼 LinkedIn: ${personalInfo.linkedin}\n- 💬 微信：页面底部 Contact 区域扫码添加\n\n建议优先邮件或微信联系。`,
+      en: `Contact info:\n\n- 📧 Email: ${personalInfo.email}\n- 📘 Facebook: ${personalInfo.facebook}\n- 🔗 GitHub: ${personalInfo.github}\n- 💼 LinkedIn: ${personalInfo.linkedin}\n- 💬 WeChat: scan QR code in the Contact section\n\nEmail or WeChat is preferred.`,
     },
   },
   {
