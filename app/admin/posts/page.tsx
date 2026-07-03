@@ -3,6 +3,7 @@ import { desc, eq } from "drizzle-orm";
 import { requireDb } from "@/lib/db";
 import { posts, categories } from "@/lib/db/schema";
 import { deletePost } from "@/lib/actions/blog";
+import { blogPostHref } from "@/lib/blog/paths";
 
 export default async function AdminPostsPage() {
   const db = requireDb();
@@ -82,7 +83,7 @@ export default async function AdminPostsPage() {
                     </Link>
                     {post.status === "published" && (
                       <Link
-                        href={`/blog/${post.slug}`}
+                        href={blogPostHref(post.slug)}
                         className="text-muted underline"
                         target="_blank"
                       >

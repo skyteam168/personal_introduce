@@ -26,7 +26,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
-  const navOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const navBg = useTransform(scrollY, [0, 80], [0, 0.85]);
 
   useEffect(() => setMounted(true), []);
 
@@ -37,16 +37,20 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      style={{ opacity: navOpacity }}
+    <header
       className={cn(
         "fixed top-0 right-0 left-0 z-50 transition-all duration-300",
         scrolled
           ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
-          : "bg-transparent"
+          : "bg-background/40 backdrop-blur-md"
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:h-18">
+      <motion.div
+        style={{ opacity: navBg }}
+        className="pointer-events-none absolute inset-0 bg-background"
+        aria-hidden
+      />
+      <nav className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:h-18">
         <Link
           href="/"
           className="text-sm font-semibold tracking-tight text-foreground"
@@ -138,6 +142,6 @@ export function Navbar() {
           </div>
         </motion.div>
       )}
-    </motion.header>
+    </header>
   );
 }

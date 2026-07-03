@@ -41,4 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# blog uploads (local dev)
+/public/uploads/
+
 .vercel

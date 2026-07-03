@@ -24,14 +24,17 @@ export function AuthButton({ className }: AuthButtonProps) {
   if (session?.user) {
     return (
       <div className={cn("flex items-center gap-2", className)}>
-        <Link
-          href="/admin/posts"
-          className="hidden items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs text-muted transition-colors hover:text-foreground sm:inline-flex"
-          title="管理后台"
-        >
-          <PenSquare className="h-3.5 w-3.5" />
-          Admin
-        </Link>
+        {session.user.isAdmin && (
+          <Link
+            href="/admin/posts"
+            prefetch
+            className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs text-muted transition-colors hover:text-foreground"
+            title="管理后台"
+          >
+            <PenSquare className="h-3.5 w-3.5" />
+            Admin
+          </Link>
+        )}
         <div className="relative h-8 w-8 overflow-hidden rounded-full border border-border">
           {session.user.image ? (
             <Image

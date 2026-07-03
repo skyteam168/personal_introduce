@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { toggleLike, recordShare } from "@/lib/actions/interactions";
+import { blogPostHref } from "@/lib/blog/paths";
 import { cn } from "@/lib/utils";
 
 interface PostInteractionsProps {
@@ -32,7 +33,7 @@ export function PostInteractions({
 
   const requireLogin = () => {
     if (!session) {
-      signIn("google", { callbackUrl: `/blog/${postSlug}` });
+      signIn("google", { callbackUrl: blogPostHref(postSlug) });
       return false;
     }
     return true;
@@ -46,13 +47,13 @@ export function PostInteractions({
         setLiked(result.liked);
         setLikes((c) => (result.liked ? c + 1 : c - 1));
       } catch {
-        signIn("google", { callbackUrl: `/blog/${postSlug}` });
+        signIn("google", { callbackUrl: blogPostHref(postSlug) });
       }
     });
   };
 
   const handleShare = async () => {
-    const url = `${window.location.origin}/blog/${postSlug}`;
+    const url = `${window.location.origin}${blogPostHref(postSlug)}`;
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);

@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { eq, and, sql } from "drizzle-orm";
 import { auth } from "@/auth";
 import { requireDb } from "@/lib/db";
@@ -32,6 +32,7 @@ export async function toggleLike(postId: string, postSlug: string) {
       .set({ likeCount: sql`GREATEST(${posts.likeCount} - 1, 0)` })
       .where(eq(posts.id, postId));
     revalidatePath(`/blog/${postSlug}`);
+    updateTag("blog");
     return { liked: false };
   }
 
@@ -41,6 +42,7 @@ export async function toggleLike(postId: string, postSlug: string) {
     .set({ likeCount: sql`${posts.likeCount} + 1` })
     .where(eq(posts.id, postId));
   revalidatePath(`/blog/${postSlug}`);
+  updateTag("blog");
   return { liked: true };
 }
 

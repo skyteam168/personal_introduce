@@ -16,7 +16,9 @@ export default auth((req) => {
   }
 
   if (!isAdminEmail(req.auth.user?.email)) {
-    return NextResponse.redirect(new URL("/", req.url));
+    const denied = new URL("/login", req.url);
+    denied.searchParams.set("error", "not_admin");
+    return NextResponse.redirect(denied);
   }
 
   return NextResponse.next();

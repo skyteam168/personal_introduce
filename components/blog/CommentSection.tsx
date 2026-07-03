@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { useSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import { addComment } from "@/lib/actions/interactions";
+import { blogPostHref } from "@/lib/blog/paths";
 
 interface Comment {
   id: string;
@@ -32,7 +33,7 @@ export function CommentSection({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!session) {
-      signIn("google", { callbackUrl: `/blog/${postSlug}#comments` });
+      signIn("google", { callbackUrl: `${blogPostHref(postSlug)}#comments` });
       return;
     }
     if (!text.trim()) return;

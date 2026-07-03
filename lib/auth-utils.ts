@@ -17,8 +17,11 @@ export function isAdminEmail(email: string | null | undefined): boolean {
 
 export async function requireAdmin() {
   const session = await auth();
-  if (!session?.user?.email || !isAdminEmail(session.user.email)) {
+  if (!session?.user?.email) {
     redirect("/login?callbackUrl=/admin");
+  }
+  if (!isAdminEmail(session.user.email)) {
+    redirect("/login?error=not_admin");
   }
   return session;
 }

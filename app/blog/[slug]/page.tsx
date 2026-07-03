@@ -9,6 +9,7 @@ import {
   getPostComments,
   hasUserLiked,
 } from "@/lib/blog/queries";
+import { resolveRouteSlug } from "@/lib/blog/paths";
 import { RichTextContent } from "@/components/blog/RichTextContent";
 import { PostInteractions } from "@/components/blog/PostInteractions";
 import { CommentSection } from "@/components/blog/CommentSection";
@@ -20,9 +21,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
   if (!db) return { title: "Blog" };
-  const post = await getPostBySlug(slug);
+  const post = await getPostBySlug(resolveRouteSlug(rawSlug));
   if (!post) return { title: "Not Found" };
   return {
     title: `${post.title} — Xiaowei Yang`,
@@ -31,34 +32,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
   if (!db) notFound();
 
-  const post = await getPostBySlug(slug);
+  const post = await getPostBySlug(resolveRouteSlug(rawSlug));
   if (!post) notFound();
 
   const session = await auth();
-  const [comments, liked] = await Promise.all([
-    getPostComments(post.id),
-    session?.user?.id
-      ? hasUserLiked(post.id, session.user.id)
-      : Promise.resolve(false),
-  ]);
+  const comments = await getPostComments(post.id);
+  const liked = session?.user?.id
+    ? await hasUserLiked(post.id, session.user.id)
+    : false;
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border">
-        <div className="mx-auto flex h-16 max-w-3xl items-center px-6">
-          <Link
-            href="/blog"
-            className="text-sm text-muted hover:text-foreground"
-          >
-            ← 博客
-          </Link>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-3xl px-6 py-12">
+    <div className="min-h-screen bg-background pt-24">
+      <main className="mx-auto max-w-3xl px-6 py-8">
+        <Link
+          href="/blog"
+          className="mb-8 inline-block text-sm text-muted hover:text-foreground"
+        >
+          ← 博客
+        </Link>
         {post.categoryName && (
           <span className="mb-4 inline-block text-xs font-medium uppercase tracking-wider text-muted">
             {post.categoryName}
