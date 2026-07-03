@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Xiaowei Yang — Personal Brand Portfolio
+
+A production-grade personal brand website built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+
+**Live:** [yangxiaowei.dev](https://yangxiaowei.dev) (configure after deployment)
+
+## Features
+
+- Apple / OpenAI inspired minimalist design
+- Dynamic particle background with mouse parallax
+- Bilingual support (中文 / English)
+- Dark / Light theme toggle
+- Responsive design (mobile, tablet, desktop)
+- Scroll animations with Framer Motion
+- AI Chat assistant (Ask Xiaowei AI)
+- Project detail pages with architecture diagrams
+- One-click PDF resume download
+- SEO optimized (sitemap, robots, Open Graph)
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **Animation:** Framer Motion
+- **Icons:** Lucide React
+- **Theme:** next-themes
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Personal Info
 
-## Learn More
+Edit `lib/data.ts` for:
+- Contact information (email, phone, GitHub, LinkedIn)
+- Skills, experience, projects, certificates
+- Tech proficiency levels
 
-To learn more about Next.js, take a look at the following resources:
+### Translations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Edit `lib/i18n.ts` for Chinese and English text content.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### AI Chat Knowledge Base
 
-## Deploy on Vercel
+Edit `lib/ai-knowledge.ts` to update the AI assistant's responses.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Assets
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Replace these files in `public/`:
+- `avatar.svg` — Your profile photo
+- `resume.pdf` — Your PDF resume
+- `images/wechat-qr.svg` — Your WeChat QR code
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import project at [vercel.com](https://vercel.com)
+3. Deploy — zero configuration needed
+
+### Cloudflare Pages / Netlify
+
+1. Build command: `npm run build`
+2. Output directory: `.next` (use Next.js adapter)
+
+### GitHub Pages
+
+Requires static export configuration. Add to `next.config.ts`:
+
+```ts
+const nextConfig = { output: 'export' };
+```
+
+## Project Structure
+
+```
+├── app/
+│   ├── page.tsx              # Home page
+│   ├── layout.tsx            # Root layout + SEO
+│   ├── globals.css           # Global styles
+│   ├── sitemap.ts            # SEO sitemap
+│   ├── robots.ts             # SEO robots
+│   └── projects/[slug]/      # Project detail pages
+├── components/
+│   ├── Hero.tsx              # Hero with particles
+│   ├── About.tsx             # About section
+│   ├── Skills.tsx            # Skills grid
+│   ├── Experience.tsx        # Timeline
+│   ├── Projects.tsx          # Project cards
+│   ├── TechStack.tsx         # Proficiency bars
+│   ├── Certificates.tsx      # Certifications
+│   ├── Contact.tsx           # Contact info
+│   ├── AIChat.tsx            # AI assistant widget
+│   ├── Navbar.tsx            # Navigation
+│   ├── Footer.tsx            # Footer
+│   └── ParticleBackground.tsx
+├── lib/
+│   ├── data.ts               # Content data
+│   ├── i18n.ts               # Translations
+│   └── ai-knowledge.ts       # AI chat knowledge
+└── public/
+    ├── avatar.svg
+    ├── resume.pdf
+    └── images/
+```
+
+## License
+
+Private — All rights reserved.
