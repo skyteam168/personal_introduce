@@ -132,22 +132,44 @@ export function Contact() {
           </div>
 
           <FadeIn delay={0.2}>
-            <GlassPanel className="flex flex-col items-center justify-center p-8">
-              <MessageCircle className="mb-4 h-6 w-6 text-muted" />
-              <p className="mb-4 text-sm font-medium text-foreground">
-                {t.contact.wechat}
-              </p>
-              <div className="relative h-40 w-40 overflow-hidden rounded-xl border border-white/10 bg-background">
-                <Image
-                  src={personalInfo.wechatQr}
-                  alt="WeChat QR Code"
-                  fill
-                  sizes="160px"
-                  className="object-contain p-2"
-                  unoptimized
-                />
+            <GlassPanel className="p-8">
+              <div className="grid gap-8 sm:grid-cols-2">
+                <div className="flex flex-col items-center text-center">
+                  <MessageCircle className="mb-4 h-6 w-6 text-muted" />
+                  <p className="mb-4 text-sm font-medium text-foreground">
+                    {t.contact.wechat}
+                  </p>
+                  <div className="relative h-40 w-40 overflow-hidden rounded-xl border border-white/10 bg-background">
+                    <Image
+                      src={personalInfo.wechatQr}
+                      alt="WeChat QR Code"
+                      fill
+                      sizes="160px"
+                      className="object-contain p-2"
+                      unoptimized
+                    />
+                  </div>
+                  <p className="mt-3 text-xs text-muted">{t.contact.wechatHint}</p>
+                </div>
+
+                <div className="flex flex-col items-center text-center">
+                  <MessageCircle className="mb-4 h-6 w-6 text-muted" />
+                  <p className="mb-4 text-sm font-medium text-foreground">
+                    {t.contact.wecom}
+                  </p>
+                  <div className="relative h-40 w-40 overflow-hidden rounded-xl border border-white/10 bg-background">
+                    <Image
+                      src={personalInfo.wecomQr}
+                      alt="WeCom QR Code"
+                      fill
+                      sizes="160px"
+                      className="object-contain p-2"
+                      unoptimized
+                    />
+                  </div>
+                  <p className="mt-3 text-xs text-muted">{t.contact.wecomHint}</p>
+                </div>
               </div>
-              <p className="mt-3 text-xs text-muted">{t.contact.wechatHint}</p>
             </GlassPanel>
           </FadeIn>
         </div>

@@ -66,6 +66,7 @@ export const personalInfo = {
   facebook: "https://www.facebook.com/profile.php?id=100009203928990",
   linkedin: "https://www.linkedin.com/in/james-yang-88a940413/",
   wechatQr: "/images/wechatqr.png",
+  wecomQr: "/images/wecom-qr.png",
   photo: "/avatar.svg",
   resume: "/resume.pdf",
   location: { zh: "越南 · 远程可用", en: "Vietnam · Open to Remote" },
