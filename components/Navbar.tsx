@@ -12,9 +12,8 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { key: "about" as const, href: "/#about" },
   { key: "projects" as const, href: "/#projects" },
-  { key: "architecture" as const, href: "/#architecture" },
+  { key: "workWithMe" as const, href: "/work-with-me", isRoute: true },
   { key: "experience" as const, href: "/#experience" },
-  { key: "skills" as const, href: "/#skills" },
   { key: "blog" as const, href: "/#blog", fallback: "/blog" },
   { key: "contact" as const, href: "/#contact" },
 ];

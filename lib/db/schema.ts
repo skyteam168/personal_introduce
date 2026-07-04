@@ -125,3 +125,46 @@ export type User = typeof users.$inferSelect;
 export type Category = typeof categories.$inferSelect;
 export type Post = typeof posts.$inferSelect;
 export type Comment = typeof comments.$inferSelect;
+
+// ─── Work With Me / Inquiries ─────────────────────────────────────
+export const inquiryTypes = [
+  "development",
+  "ai",
+  "infrastructure",
+  "on_site",
+  "other",
+] as const;
+
+export type InquiryType = (typeof inquiryTypes)[number];
+
+export const inquiryStatuses = [
+  "new",
+  "reviewing",
+  "quoted",
+  "accepted",
+  "closed",
+  "spam",
+] as const;
+
+export type InquiryStatus = (typeof inquiryStatuses)[number];
+
+export const inquiries = pgTable("inquiry", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  type: text("type").$type<InquiryType>().notNull(),
+  company: text("company").notNull(),
+  contactName: text("contactName").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  description: text("description").notNull(),
+  timeline: text("timeline"),
+  budgetRange: text("budgetRange"),
+  location: text("location"),
+  status: text("status").$type<InquiryStatus>().notNull().default("new"),
+  adminNotes: text("adminNotes"),
+  ipHash: text("ipHash"),
+  locale: text("locale").$type<"zh" | "en">(),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow().notNull(),
+});
+
+export type Inquiry = typeof inquiries.$inferSelect;

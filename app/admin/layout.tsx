@@ -23,6 +23,9 @@ export default async function AdminLayout({
               <Link href="/admin/categories" className="hover:text-foreground">
                 分类
               </Link>
+              <Link href="/admin/inquiries" className="hover:text-foreground">
+                咨询
+              </Link>
               <Link href="/admin/posts/new" className="hover:text-foreground">
                 写文章
               </Link>

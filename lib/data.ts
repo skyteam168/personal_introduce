@@ -440,18 +440,13 @@ export const certificates: Certificate[] = [
   },
   {
     name: { zh: "英语 CET-4", en: "English CET-4" },
-    issuer: { zh: "工作语言", en: "Working Language" },
+    issuer: { zh: "工作语言，听说读写熟练", en: "Fluent in English, speaking, reading, and writing" },
     status: "active",
   },
   {
     name: { zh: "越南语 B1", en: "Vietnamese B1" },
-    issuer: { zh: "工作语言", en: "Working Language" },
+    issuer: { zh: "工作语言，听说读写熟练", en: "Fluent in Vietnamese, speaking, reading, and writing" },
     status: "active",
-  },
-  {
-    name: { zh: "AWS 认证", en: "AWS Certification" },
-    issuer: { zh: "Amazon Web Services", en: "Amazon Web Services" },
-    status: "planned",
   },
   {
     name: { zh: "阿里云 AIGC 认证", en: "Alibaba Cloud AIGC Certification" },

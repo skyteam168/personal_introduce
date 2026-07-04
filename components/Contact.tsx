@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Download, MapPin } from "lucide-react";
 import { SocialIcon } from "@/components/icons/SocialIcons";
@@ -67,6 +68,16 @@ export function Contact() {
                 {t.contact[badge.key]}
               </span>
             ))}
+        </FadeIn>
+
+        <FadeIn className="mb-10">
+          <Link
+            href="/work-with-me"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          >
+            {t.nav.workWithMe}
+            <span aria-hidden>→</span>
+          </Link>
         </FadeIn>
 
         <div className="grid gap-8 lg:grid-cols-2">
