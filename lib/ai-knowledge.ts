@@ -73,8 +73,8 @@ const knowledgeBase: KnowledgeEntry[] = [
   {
     keywords: ["谁", "who", "介绍", "about", "是谁", "杨晓伟"],
     answer: {
-      zh: "杨晓伟（Xiaowei Yang）是一位 **Enterprise AI Solutions Architect**，拥有 9+ 年企业 IT 经验。\n\n职业路径：网络工程师 → 基础设施工程师 → IT 负责人 → AI 工程师 → 企业 AI 解决方案架构师。\n\n核心竞争力：同时具备企业 IT 基础设施、网络架构、生产级 AI Agent 与企业数字化落地经验 — 能独立负责基础设施建设，并用 AI 提升企业效率。",
-      en: "Xiaowei Yang is an **Enterprise AI Solutions Architect** with 9+ years of enterprise IT experience.\n\nCareer arc: Network Engineer → Infrastructure Engineer → IT Leader → AI Engineer → Enterprise AI Solutions Architect.\n\nCore differentiator: enterprise IT infrastructure, network architecture, production AI Agents, and digital transformation — in one practitioner who can own infrastructure end-to-end and apply AI at scale.",
+      zh: "杨晓伟（Xiaowei Yang）是一位 **Enterprise AI Solutions Architect**，拥有 9+ 年企业 IT 经验。\n\n职业路径：基础设施工程师（网管）→ IT 负责人 → 网络工程师 → AI 研发工程师 → 企业数字化与信息化主导人。\n\n核心竞争力：同时具备企业 IT 基础设施、网络架构、生产级 AI Agent 与企业数字化落地经验 — 能独立负责基础设施建设，并用 AI 提升企业效率。",
+      en: "Xiaowei Yang is an **Enterprise AI Solutions Architect** with 9+ years of enterprise IT experience.\n\nCareer arc: Infrastructure Engineer (SysAdmin) → IT Leader → Network Engineer → AI R&D Engineer → Head of Enterprise Digitalization & IT.\n\nCore differentiator: enterprise IT infrastructure, network architecture, production AI Agents, and digital transformation — in one practitioner who can own infrastructure end-to-end and apply AI at scale.",
     },
   },
 ];

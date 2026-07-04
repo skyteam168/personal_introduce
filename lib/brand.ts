@@ -17,13 +17,33 @@ export const BRAND = {
 } as const;
 
 export const CAREER_STAGES = [
-  { key: "network", label: { en: "Network Engineer", zh: "网络工程师" }, future: false },
-  { key: "infra", label: { en: "Infrastructure Engineer", zh: "基础设施工程师" }, future: false },
-  { key: "leader", label: { en: "IT Leader", zh: "IT 负责人" }, future: false },
-  { key: "ai", label: { en: "AI Engineer", zh: "AI 工程师" }, future: false },
   {
-    key: "architect",
-    label: { en: "Enterprise AI Solutions Architect", zh: "企业 AI 解决方案架构师" },
+    key: "infra",
+    label: { en: "Infrastructure Engineer", zh: "基础设施工程师" },
+    hint: { en: "Systems Administrator", zh: "网管" },
+    future: false,
+  },
+  {
+    key: "leader",
+    label: { en: "IT Leader", zh: "IT 负责人" },
+    future: false,
+  },
+  {
+    key: "network",
+    label: { en: "Network Engineer", zh: "网络工程师" },
+    future: false,
+  },
+  {
+    key: "ai",
+    label: { en: "AI R&D Engineer", zh: "AI 研发工程师" },
+    future: false,
+  },
+  {
+    key: "digital",
+    label: {
+      en: "Head of Enterprise Digitalization & IT",
+      zh: "企业数字化与信息化主导人",
+    },
     future: true,
   },
 ] as const;

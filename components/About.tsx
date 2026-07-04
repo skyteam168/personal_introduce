@@ -57,9 +57,14 @@ export function About() {
                     >
                       {locale === "zh" ? stage.label.zh : stage.label.en}
                     </p>
+                    {"hint" in stage && stage.hint && (
+                      <p className="mt-1.5 text-xs text-muted">
+                        {locale === "zh" ? stage.hint.zh : stage.hint.en}
+                      </p>
+                    )}
                     {stage.future && (
                       <p className="mt-2 text-xs text-muted">
-                        {locale === "zh" ? "下一步" : "Next"}
+                        {locale === "zh" ? "当前方向" : "Current focus"}
                       </p>
                     )}
                   </GlassPanel>

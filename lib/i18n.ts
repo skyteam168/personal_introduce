@@ -30,7 +30,7 @@ export const translations = {
       label: "About",
       title: "企业 IT 基础设施 × AI 落地",
       subtitle:
-        "不是技能清单，而是一条清晰的职业演进 — 从网络工程师到 Enterprise AI Solutions Architect。",
+        "不是技能清单，而是一条清晰的职业演进 — 从网管到企业数字化与信息化主导。",
       story:
         "我同时拥有企业 IT 基础设施、网络架构、软件开发、AI Agent 与企业数字化落地经验。我能独立负责基础设施建设，并用 AI 提升企业效率 — 这是大多数工程师或 AI 开发者无法同时做到的。",
       journeyTitle: "职业演进",
@@ -65,7 +65,7 @@ export const translations = {
     experience: {
       label: "Journey",
       title: "成长故事",
-      subtitle: "从网络工程师到 IT 负责人 — 基础设施与智能化的完整演进。",
+      subtitle: "基础设施 → IT 负责人 → 网络工程 → AI 研发 → 企业数字化主导。",
       achievements: "关键成就",
       businessImpact: "业务影响",
       leadership: "领导力",
@@ -170,7 +170,7 @@ export const translations = {
       label: "About",
       title: "Enterprise IT Infrastructure × AI at Scale",
       subtitle:
-        "Not a skill dump — a deliberate career arc from Network Engineer to Enterprise AI Solutions Architect.",
+        "Not a skill dump — a deliberate arc from sysadmin to enterprise digitalization leadership.",
       story:
         "I combine enterprise IT infrastructure, network architecture, software development, AI Agents, and digital transformation — in one practitioner. I can own infrastructure end-to-end and apply AI to improve how enterprises operate. That's rare.",
       journeyTitle: "Career Arc",
@@ -205,7 +205,8 @@ export const translations = {
     experience: {
       label: "Journey",
       title: "The story so far",
-      subtitle: "Network Engineer → Infrastructure → IT Leader → AI Engineer → Solutions Architect.",
+      subtitle:
+        "Infrastructure → IT Leader → Network Engineering → AI R&D → Enterprise Digitalization.",
       achievements: "Key Achievements",
       businessImpact: "Business Impact",
       leadership: "Leadership",
