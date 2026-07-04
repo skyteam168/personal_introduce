@@ -1,35 +1,72 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { FadeIn } from "@/components/ui/FadeIn";
+import { GlassPanel } from "@/components/ui/GlassPanel";
+import { CAREER_STAGES } from "@/lib/brand";
 
 export function About() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding section-divider">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label={t.about.label}
-          title={t.about.headline}
-          subtitle={t.about.description}
+          title={t.about.title}
+          subtitle={t.about.subtitle}
         />
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {t.about.highlights.map((item, i) => (
-            <motion.div
-              key={item}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group rounded-2xl border border-border bg-surface/30 p-6 transition-colors hover:border-foreground/20 hover:bg-surface/60"
-            >
-              <div className="mb-3 h-px w-8 bg-foreground/30 transition-all group-hover:w-12" />
-              <p className="text-sm font-medium text-foreground">{item}</p>
-            </motion.div>
-          ))}
+        <FadeIn>
+          <p className="mb-16 max-w-3xl text-lg leading-relaxed text-muted md:text-xl">
+            {t.about.story}
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.15}>
+          <h3 className="mb-8 text-xs font-medium tracking-[0.2em] text-muted uppercase">
+            {t.about.journeyTitle}
+          </h3>
+        </FadeIn>
+
+        <div className="relative">
+          <div className="absolute top-6 right-0 left-0 hidden h-px bg-border md:block" />
+          <div className="grid gap-6 md:grid-cols-5">
+            {CAREER_STAGES.map((stage, i) => (
+              <FadeIn key={stage.key} delay={i * 0.1}>
+                <div className="relative flex flex-col items-center text-center md:items-start md:text-left">
+                  <div
+                    className={`relative z-10 mb-4 flex h-12 w-12 items-center justify-center rounded-full border ${
+                      stage.future
+                        ? "border-dashed border-accent/50 bg-accent/5"
+                        : "border-foreground/20 bg-background"
+                    }`}
+                  >
+                    <span className="text-xs font-semibold text-muted">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <GlassPanel
+                    className={`w-full p-5 ${stage.future ? "border-dashed border-accent/20" : ""}`}
+                  >
+                    <p
+                      className={`text-sm font-medium leading-snug ${
+                        stage.future ? "text-accent" : "text-foreground"
+                      }`}
+                    >
+                      {locale === "zh" ? stage.label.zh : stage.label.en}
+                    </p>
+                    {stage.future && (
+                      <p className="mt-2 text-xs text-muted">
+                        {locale === "zh" ? "下一步" : "Next"}
+                      </p>
+                    )}
+                  </GlassPanel>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,23 +1,23 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TechIcon } from "@/components/icons/TechIcons";
-import { skills, skillCategories } from "@/lib/data";
-import type { Skill } from "@/lib/data";
+import { FadeIn } from "@/components/ui/FadeIn";
+import { GlassPanel } from "@/components/ui/GlassPanel";
+import { capabilityDomains, type ProficiencyLevel } from "@/lib/data";
+import { cn } from "@/lib/utils";
+
+const levelStyles: Record<ProficiencyLevel, string> = {
+  expert: "bg-foreground text-background",
+  advanced: "bg-foreground/10 text-foreground",
+  intermediate: "bg-foreground/5 text-muted",
+};
 
 export function Skills() {
   const { t } = useLanguage();
 
-  const grouped = skillCategories.map((category) => ({
-    category,
-    label: t.skills.categories[category],
-    items: skills.filter((s) => s.category === category),
-  }));
-
   return (
-    <section id="skills" className="section-padding border-t border-border/50">
+    <section id="skills" className="section-padding section-divider">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label={t.skills.label}
@@ -25,37 +25,35 @@ export function Skills() {
           subtitle={t.skills.subtitle}
         />
 
-        <div className="space-y-12">
-          {grouped.map(({ category, label, items }, groupIndex) => (
-            <div key={category}>
-              <h3 className="mb-5 text-xs font-medium uppercase tracking-[0.15em] text-muted">
-                {label}
-              </h3>
-              <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 md:gap-5">
-                {items.map((skill: Skill, i) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-30px" }}
-                    transition={{
-                      duration: 0.4,
-                      delay: groupIndex * 0.05 + i * 0.04,
-                    }}
-                    whileHover={{ y: -4 }}
-                    className="group flex flex-col items-center gap-3 rounded-2xl border border-border/50 bg-surface/20 p-4 transition-all hover:border-border hover:bg-surface/50 md:p-5"
+        <div className="grid gap-4 md:grid-cols-2">
+          {capabilityDomains.map((domain, i) => (
+            <FadeIn key={domain.id} delay={i * 0.08}>
+              <GlassPanel hover className="p-6 md:p-8">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <h3 className="text-base font-semibold text-foreground md:text-lg">
+                    {t.skills.domains[domain.id as keyof typeof t.skills.domains]}
+                  </h3>
+                  <span
+                    className={cn(
+                      "shrink-0 rounded-full px-3 py-1 text-xs font-medium",
+                      levelStyles[domain.level]
+                    )}
                   >
-                    <TechIcon
-                      name={skill.icon}
-                      className="h-8 w-8 transition-transform group-hover:scale-110"
-                    />
-                    <span className="text-center text-xs font-medium text-muted transition-colors group-hover:text-foreground">
-                      {skill.name}
+                    {t.skills.levels[domain.level]}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {domain.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full bg-foreground/[0.04] px-3 py-1.5 text-xs text-muted"
+                    >
+                      {tech}
                     </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                  ))}
+                </div>
+              </GlassPanel>
+            </FadeIn>
           ))}
         </div>
       </div>

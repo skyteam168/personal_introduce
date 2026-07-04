@@ -3,10 +3,14 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ArrowDown } from "lucide-react";
-import Link from "next/link";
+import {
+  ArrowDown,
+  Download,
+  ArrowUpRight,
+} from "lucide-react";
+import { SocialIcon } from "@/components/icons/SocialIcons";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { ParticleBackground } from "@/components/ParticleBackground";
+import { personalInfo } from "@/lib/data";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -14,13 +18,10 @@ export function Hero() {
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
-  const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
-
-  const textX = useTransform(springX, [-0.5, 0.5], [-8, 8]);
-  const textY = useTransform(springY, [-0.5, 0.5], [-6, 6]);
-  const avatarX = useTransform(springX, [-0.5, 0.5], [12, -12]);
-  const avatarY = useTransform(springY, [-0.5, 0.5], [8, -8]);
+  const springX = useSpring(mouseX, { stiffness: 80, damping: 25 });
+  const springY = useSpring(mouseY, { stiffness: 80, damping: 25 });
+  const glowX = useTransform(springX, [-0.5, 0.5], [-60, 60]);
+  const glowY = useTransform(springY, [-0.5, 0.5], [-40, 40]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -33,36 +34,27 @@ export function Hero() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="gradient-mesh relative flex min-h-screen items-center overflow-hidden"
     >
-      <ParticleBackground />
+      <motion.div
+        style={{ x: glowX, y: glowY }}
+        className="hero-glow -top-32 left-1/4 h-[500px] w-[500px] bg-accent/20 dark:bg-accent/10"
+        aria-hidden
+      />
+      <motion.div
+        style={{ x: useTransform(springX, [-0.5, 0.5], [30, -30]) }}
+        className="hero-glow top-1/3 right-0 h-[400px] w-[400px] bg-foreground/5"
+        aria-hidden
+      />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-16">
-        <div className="flex flex-col items-center text-center lg:flex-row lg:items-center lg:gap-16 lg:text-left">
-          <motion.div
-            style={{ x: avatarX, y: avatarY }}
-            className="relative mb-10 shrink-0 lg:mb-0"
-          >
-            <div className="relative h-32 w-32 overflow-hidden rounded-full border border-border/50 bg-surface md:h-40 md:w-40">
-              <Image
-                src="/avatar.svg"
-                alt={t.hero.name}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="absolute -inset-4 -z-10 rounded-full bg-foreground/5 blur-2xl" />
-          </motion.div>
-
-          <motion.div style={{ x: textX, y: textY }} className="flex-1">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pt-28 pb-20">
+        <div className="grid items-center gap-16 lg:grid-cols-[1fr_auto] lg:gap-20">
+          <div>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-4 text-sm font-medium tracking-widest text-muted uppercase"
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-6 text-xs font-medium tracking-[0.25em] text-muted uppercase"
             >
               {t.hero.title}
             </motion.p>
@@ -70,58 +62,92 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl"
+              transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-6 text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl"
             >
-              {t.hero.name}
+              <span className="text-gradient">{t.hero.name}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 max-w-xl text-lg text-muted md:text-xl lg:mx-0 lg:text-2xl"
+              transition={{ duration: 0.7, delay: 0.16 }}
+              className="mb-4 max-w-xl text-xl leading-snug font-medium text-foreground md:text-2xl lg:text-3xl"
             >
               {t.hero.tagline}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.24 }}
+              className="mb-10 max-w-lg text-base leading-relaxed text-muted md:text-lg"
+            >
+              {t.hero.subtitle}
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-10 flex flex-wrap justify-center gap-2 lg:justify-start"
-            >
-              {t.hero.tags.map((tag, i) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-border bg-surface/50 px-4 py-1.5 text-xs font-medium text-foreground/80 backdrop-blur-sm"
-                  style={{ animationDelay: `${i * 0.05}s` }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap justify-center gap-4 lg:justify-start"
+              transition={{ duration: 0.7, delay: 0.32 }}
+              className="flex flex-wrap gap-3"
             >
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:opacity-90"
               >
-                {t.hero.cta}
-                <ArrowDown className="h-4 w-4" />
+                {t.hero.ctaProjects}
+                <ArrowUpRight className="h-4 w-4" />
               </a>
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+              <a
+                href={personalInfo.resume}
+                download
+                className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-foreground/5"
               >
-                {t.hero.ctaSecondary}
-              </Link>
+                <Download className="h-4 w-4" />
+                {t.hero.ctaResume}
+              </a>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-muted transition-all hover:text-foreground"
+                aria-label="GitHub"
+              >
+                <SocialIcon name="github" className="h-4 w-4" />
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-muted transition-all hover:text-foreground"
+                aria-label="LinkedIn"
+              >
+                <SocialIcon name="linkedin" className="h-4 w-4" />
+              </a>
             </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto shrink-0"
+          >
+            <div className="relative h-56 w-56 overflow-hidden rounded-full md:h-72 md:w-72">
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-accent/30 via-transparent to-foreground/10" />
+              <div className="relative h-full w-full overflow-hidden rounded-full border border-white/10 bg-surface">
+                <Image
+                  src={personalInfo.photo}
+                  alt={t.hero.name}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 224px, 288px"
+                />
+              </div>
+            </div>
+            <div className="absolute -inset-8 -z-10 rounded-full bg-accent/10 blur-3xl" />
           </motion.div>
         </div>
       </div>
@@ -130,13 +156,16 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
       >
+        <span className="text-[10px] tracking-widest text-muted uppercase">
+          {t.hero.scroll}
+        </span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
         >
-          <ArrowDown className="h-5 w-5 text-muted" />
+          <ArrowDown className="h-4 w-4 text-muted" />
         </motion.div>
       </motion.div>
     </section>

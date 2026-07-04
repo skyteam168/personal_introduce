@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, Download, MapPin } from "lucide-react";
 import { SocialIcon } from "@/components/icons/SocialIcons";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { personalInfo } from "@/lib/data";
+import { FadeIn } from "@/components/ui/FadeIn";
+import { GlassPanel } from "@/components/ui/GlassPanel";
+import { personalInfo, availability } from "@/lib/data";
 
 const contactLinks = [
   {
@@ -14,12 +16,6 @@ const contactLinks = [
     icon: "mail" as const,
     href: `mailto:${personalInfo.email}`,
     value: personalInfo.email,
-  },
-  {
-    key: "facebook" as const,
-    icon: "facebook" as const,
-    href: personalInfo.facebook,
-    value: "Facebook",
   },
   {
     key: "github" as const,
@@ -33,13 +29,26 @@ const contactLinks = [
     href: personalInfo.linkedin,
     value: "LinkedIn",
   },
+  {
+    key: "facebook" as const,
+    icon: "facebook" as const,
+    href: personalInfo.facebook,
+    value: "Facebook",
+  },
+];
+
+const availabilityBadges = [
+  { key: "openToWork" as const, active: availability.openToWork },
+  { key: "remote" as const, active: availability.remote },
+  { key: "relocation" as const, active: availability.relocation },
+  { key: "consulting" as const, active: availability.consulting },
 ];
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
-    <section id="contact" className="section-padding border-t border-border/50">
+    <section id="contact" className="section-padding section-divider">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label={t.contact.label}
@@ -47,59 +56,89 @@ export function Contact() {
           subtitle={t.contact.subtitle}
         />
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <div className="grid gap-3 sm:grid-cols-2">
-            {contactLinks.map((link, i) => (
-              <motion.a
-                key={link.key}
-                href={link.href}
-                target={link.key === "email" ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="group flex items-center gap-4 rounded-2xl border border-border bg-surface/20 p-5 transition-all hover:border-foreground/20 hover:bg-surface/40"
+        <FadeIn className="mb-10 flex flex-wrap gap-2">
+          {availabilityBadges
+            .filter((b) => b.active)
+            .map((badge) => (
+              <span
+                key={badge.key}
+                className="rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium text-foreground"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background text-foreground/70">
-                  {link.icon === "mail" && <Mail className="h-5 w-5" />}
-                  {link.icon !== "mail" && (
-                    <SocialIcon name={link.icon} />
-                  )}
-                </div>
-                <div>
-                  <p className="text-xs text-muted">{t.contact[link.key]}</p>
-                  <p className="text-sm font-medium text-foreground">
-                    {link.value}
-                  </p>
-                </div>
-              </motion.a>
+                {t.contact[badge.key]}
+              </span>
             ))}
+        </FadeIn>
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="space-y-4">
+            <FadeIn>
+              <div className="mb-6 flex items-center gap-2 text-sm text-muted">
+                <MapPin className="h-4 w-4" />
+                {locale === "zh"
+                  ? personalInfo.location.zh
+                  : personalInfo.location.en}
+              </div>
+            </FadeIn>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {contactLinks.map((link, i) => (
+                <FadeIn key={link.key} delay={i * 0.06}>
+                  <motion.a
+                    href={link.href}
+                    target={link.key === "email" ? undefined : "_blank"}
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2 }}
+                    className="glass flex items-center gap-4 rounded-2xl p-5 transition-colors hover:bg-foreground/[0.04]"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/5">
+                      {link.icon === "mail" ? (
+                        <Mail className="h-5 w-5 text-foreground/70" />
+                      ) : (
+                        <SocialIcon name={link.icon} />
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted">{t.contact[link.key]}</p>
+                      <p className="text-sm font-medium text-foreground">
+                        {link.value}
+                      </p>
+                    </div>
+                  </motion.a>
+                </FadeIn>
+              ))}
+            </div>
+
+            <FadeIn delay={0.3}>
+              <a
+                href={personalInfo.resume}
+                download
+                className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-foreground/5"
+              >
+                <Download className="h-4 w-4" />
+                {t.contact.resume}
+              </a>
+            </FadeIn>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col items-center justify-center rounded-2xl border border-border bg-surface/20 p-8"
-          >
-            <MessageCircle className="mb-4 h-6 w-6 text-muted" />
-            <p className="mb-4 text-sm font-medium text-foreground">
-              {t.contact.wechat}
-            </p>
-            <div className="relative h-40 w-40 overflow-hidden rounded-xl border border-border bg-background">
-              <Image
-                src={personalInfo.wechatQr}
-                alt="WeChat QR Code"
-                fill
-                sizes="160px"
-                className="object-contain p-2"
-                unoptimized
-              />
-            </div>
-            <p className="mt-3 text-xs text-muted">{t.contact.wechatHint}</p>
-          </motion.div>
+          <FadeIn delay={0.2}>
+            <GlassPanel className="flex flex-col items-center justify-center p-8">
+              <MessageCircle className="mb-4 h-6 w-6 text-muted" />
+              <p className="mb-4 text-sm font-medium text-foreground">
+                {t.contact.wechat}
+              </p>
+              <div className="relative h-40 w-40 overflow-hidden rounded-xl border border-white/10 bg-background">
+                <Image
+                  src={personalInfo.wechatQr}
+                  alt="WeChat QR Code"
+                  fill
+                  sizes="160px"
+                  className="object-contain p-2"
+                  unoptimized
+                />
+              </div>
+              <p className="mt-3 text-xs text-muted">{t.contact.wechatHint}</p>
+            </GlassPanel>
+          </FadeIn>
         </div>
       </div>
     </section>
