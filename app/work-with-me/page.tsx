@@ -7,7 +7,7 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Work With Me — Consulting & Delivery",
   description:
-    "Enterprise consulting and delivery engagements: custom development, AI implementation, infrastructure, and on-site support.",
+    "Enterprise engagements: network architecture design, overseas datacenter build-out, digital platforms, AI implementation, and on-site support.",
   alternates: { canonical: `${getSiteUrl()}/work-with-me` },
 };
 

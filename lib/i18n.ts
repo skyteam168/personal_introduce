@@ -145,7 +145,7 @@ export const translations = {
       label: "Work With Me",
       title: "企业咨询与交付合作",
       subtitle:
-        "面向有明确业务目标的企业 — 定制开发、AI 落地、基础设施与现场支援。非按件外包。",
+        "从网络架构规划、海外机房建设，到数字化平台、AI 落地与现场支援 — 面向有明确业务目标的企业级 engagement，非按件外包。",
       servicesTitle: "服务范围",
       processTitle: "合作流程",
       faqTitle: "常见问题",
@@ -174,7 +174,7 @@ export const translations = {
         phone: "+84 ...",
         location: "城市 / 国家",
         timeline: "例如：Q3 启动，2 个月内上线",
-        description: "请描述业务背景、目标与当前痛点（10–2000 字）",
+        description: "请描述业务背景、现有 IT 环境、目标与痛点（10–2000 字）",
       },
     },
   },
@@ -324,7 +324,7 @@ export const translations = {
       label: "Work With Me",
       title: "Consulting & delivery engagements",
       subtitle:
-        "For enterprises with clear outcomes — custom development, AI implementation, infrastructure, and on-site support. Not gig-style outsourcing.",
+        "Network architecture, overseas datacenter build-out, digital platforms, AI in production, and on-site support — enterprise engagements with clear outcomes, not gig outsourcing.",
       servicesTitle: "Engagement types",
       processTitle: "How it works",
       faqTitle: "FAQ",
@@ -353,7 +353,8 @@ export const translations = {
         phone: "+1 ...",
         location: "City / country",
         timeline: "e.g. Start Q3, go-live in 8 weeks",
-        description: "Business context, goals, and current pain points (10–2000 chars)",
+        description:
+          "Business context, current IT environment, goals, and constraints (10–2000 chars)",
       },
     },
   },
