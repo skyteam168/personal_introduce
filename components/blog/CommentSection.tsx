@@ -5,6 +5,8 @@ import { useSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import { addComment } from "@/lib/actions/interactions";
 import { blogPostHref } from "@/lib/blog/paths";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { LocalizedDate } from "@/components/blog/BlogPostChrome";
 
 interface Comment {
   id: string;
@@ -25,6 +27,7 @@ export function CommentSection({
   postSlug,
   comments: initialComments,
 }: CommentSectionProps) {
+  const { t } = useLanguage();
   const { data: session } = useSession();
   const [comments, setComments] = useState(initialComments);
   const [text, setText] = useState("");
@@ -57,7 +60,7 @@ export function CommentSection({
   return (
     <section id="comments" className="mt-12">
       <h2 className="mb-6 text-xl font-semibold text-foreground">
-        评论 ({comments.length})
+        {t.blog.comments} ({comments.length})
       </h2>
 
       <form onSubmit={handleSubmit} className="mb-8">
@@ -65,7 +68,7 @@ export function CommentSection({
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={
-            session ? "写下你的评论…" : "登录后即可评论"
+            session ? t.blog.writeComment : t.blog.loginToComment
           }
           rows={3}
           className="w-full resize-none rounded-xl border border-border bg-surface/30 px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none focus:border-foreground/30"
@@ -76,14 +79,14 @@ export function CommentSection({
             disabled={isPending || !text.trim()}
             className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-40"
           >
-            {session ? "发表评论" : "登录后评论"}
+            {session ? t.blog.submitComment : t.blog.loginToCommentBtn}
           </button>
         </div>
       </form>
 
       <div className="space-y-4">
         {comments.length === 0 && (
-          <p className="text-sm text-muted">暂无评论，来抢沙发吧。</p>
+          <p className="text-sm text-muted">{t.blog.noCommentsYet}</p>
         )}
         {comments.map((comment) => (
           <div
@@ -94,7 +97,7 @@ export function CommentSection({
               {comment.userImage ? (
                 <Image
                   src={comment.userImage}
-                  alt={comment.userName ?? "User"}
+                  alt={comment.userName ?? t.blog.anonymous}
                   fill
                   className="object-cover"
                 />
@@ -107,10 +110,10 @@ export function CommentSection({
             <div className="flex-1">
               <div className="mb-1 flex items-baseline gap-2">
                 <span className="text-sm font-medium text-foreground">
-                  {comment.userName ?? "Anonymous"}
+                  {comment.userName ?? t.blog.anonymous}
                 </span>
                 <span className="text-xs text-muted">
-                  {new Date(comment.createdAt).toLocaleDateString("zh-CN")}
+                  <LocalizedDate date={comment.createdAt} />
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-foreground/90">

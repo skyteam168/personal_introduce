@@ -5,6 +5,7 @@ import { useSession, signIn } from "next-auth/react";
 import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { toggleLike, recordShare } from "@/lib/actions/interactions";
 import { blogPostHref } from "@/lib/blog/paths";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
 
 interface PostInteractionsProps {
@@ -24,6 +25,7 @@ export function PostInteractions({
   shareCount,
   initialLiked,
 }: PostInteractionsProps) {
+  const { t } = useLanguage();
   const { data: session } = useSession();
   const [liked, setLiked] = useState(initialLiked);
   const [likes, setLikes] = useState(likeCount);
@@ -100,7 +102,7 @@ export function PostInteractions({
         className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-muted transition-colors hover:border-foreground/30 hover:text-foreground"
       >
         <Share2 className="h-4 w-4" />
-        {copied ? "已复制链接" : shares}
+        {copied ? t.blog.linkCopied : shares}
       </button>
     </div>
   );

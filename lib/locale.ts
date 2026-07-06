@@ -16,6 +16,12 @@ export const HTML_LANG: Record<Locale, string> = {
   vi: "vi",
 };
 
+export const DATE_LOCALE: Record<Locale, string> = {
+  zh: "zh-CN",
+  en: "en-US",
+  vi: "vi-VN",
+};
+
 /** Resolve localized string with en → zh fallback */
 export function pick(text: Localized, locale: Locale): string {
   return text[locale] ?? text.en ?? text.zh;

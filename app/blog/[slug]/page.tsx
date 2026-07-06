@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -13,6 +12,7 @@ import { resolveRouteSlug } from "@/lib/blog/paths";
 import { RichTextContent } from "@/components/blog/RichTextContent";
 import { PostInteractions } from "@/components/blog/PostInteractions";
 import { CommentSection } from "@/components/blog/CommentSection";
+import { BlogBackLink, LocalizedDate } from "@/components/blog/BlogPostChrome";
 
 export const dynamic = "force-dynamic";
 
@@ -47,12 +47,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-background pt-24">
       <main className="mx-auto max-w-3xl px-6 py-8">
-        <Link
-          href="/blog"
-          className="mb-8 inline-block text-sm text-muted hover:text-foreground"
-        >
-          ← 博客
-        </Link>
+        <BlogBackLink />
         {post.categoryName && (
           <span className="mb-4 inline-block text-xs font-medium uppercase tracking-wider text-muted">
             {post.categoryName}
@@ -78,7 +73,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {post.publishedAt && (
             <>
               <span>·</span>
-              <time>{new Date(post.publishedAt).toLocaleDateString("zh-CN")}</time>
+              <LocalizedDate date={post.publishedAt} />
             </>
           )}
         </div>
