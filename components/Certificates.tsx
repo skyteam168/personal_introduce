@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { certificates } from "@/lib/data";
+import { pick } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function Certificates() {
@@ -40,11 +41,11 @@ export function Certificates() {
                 )}
               </div>
               <h3 className="mb-1 text-base font-semibold text-foreground">
-                {locale === "zh" ? cert.name.zh : cert.name.en}
+                {pick(cert.name, locale)}
               </h3>
               <div className="flex items-center gap-1.5 text-sm text-muted">
                 <Globe className="h-3.5 w-3.5" />
-                {locale === "zh" ? cert.issuer.zh : cert.issuer.en}
+                {pick(cert.issuer, locale)}
               </div>
             </GlassPanel>
             </FadeIn>

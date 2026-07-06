@@ -6,6 +6,7 @@ import { ArrowUpRight, Star } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/lib/data";
+import { pick } from "@/lib/locale";
 
 export function Projects() {
   const { t, locale } = useLanguage();
@@ -49,13 +50,11 @@ export function Projects() {
                 </div>
 
                 <h3 className="mb-3 text-xl font-semibold text-foreground transition-colors group-hover:text-foreground/80">
-                  {locale === "zh" ? project.title.zh : project.title.en}
+                  {pick(project.title, locale)}
                 </h3>
 
                 <p className="mb-6 flex-1 text-sm leading-relaxed text-muted">
-                  {locale === "zh"
-                    ? project.description.zh
-                    : project.description.en}
+                  {pick(project.description, locale)}
                 </p>
 
                 <div className="mb-6 flex flex-wrap gap-2">

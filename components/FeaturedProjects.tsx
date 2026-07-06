@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { getFeaturedProjects, projects } from "@/lib/data";
+import { pick } from "@/lib/locale";
 
 export function FeaturedProjects() {
   const { t, locale } = useLanguage();
@@ -34,7 +35,7 @@ export function FeaturedProjects() {
                           {t.projects.featured}
                         </p>
                         <p className="text-2xl font-semibold text-foreground/80 md:text-3xl">
-                          {locale === "zh" ? project.title.zh : project.title.en}
+                          {pick(project.title, locale)}
                         </p>
                       </div>
                     </div>
@@ -43,9 +44,7 @@ export function FeaturedProjects() {
 
                   <div className="flex flex-col justify-center p-8 lg:col-span-3 lg:p-10">
                     <p className="mb-4 text-base leading-relaxed text-muted md:text-lg">
-                      {locale === "zh"
-                        ? project.description.zh
-                        : project.description.en}
+                      {pick(project.description, locale)}
                     </p>
 
                     <div className="mb-6 space-y-3">
@@ -54,9 +53,7 @@ export function FeaturedProjects() {
                           {t.projects.businessValue}
                         </p>
                         <p className="text-sm text-foreground/90">
-                          {locale === "zh"
-                            ? project.businessValue.zh
-                            : project.businessValue.en}
+                          {pick(project.businessValue, locale)}
                         </p>
                       </div>
                       <div>
@@ -64,9 +61,7 @@ export function FeaturedProjects() {
                           {t.projects.result}
                         </p>
                         <p className="text-sm text-foreground/90">
-                          {locale === "zh"
-                            ? project.result.zh
-                            : project.result.en}
+                          {pick(project.result, locale)}
                         </p>
                       </div>
                     </div>
@@ -113,7 +108,7 @@ export function FeaturedProjects() {
           <FadeIn delay={0.3} className="mt-12 text-center">
             <p className="mb-6 text-sm text-muted">
               + {projects.length - featured.length}{" "}
-              {locale === "zh" ? "更多企业级项目" : "more enterprise projects"}
+              {t.projects.moreProjects}
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {projects
@@ -125,12 +120,10 @@ export function FeaturedProjects() {
                     className="group glass rounded-2xl p-6 transition-all hover:bg-foreground/[0.04]"
                   >
                     <h3 className="mb-2 font-semibold text-foreground group-hover:opacity-80">
-                      {locale === "zh" ? project.title.zh : project.title.en}
+                      {pick(project.title, locale)}
                     </h3>
                     <p className="line-clamp-2 text-sm text-muted">
-                      {locale === "zh"
-                        ? project.description.zh
-                        : project.description.en}
+                      {pick(project.description, locale)}
                     </p>
                   </Link>
                 ))}

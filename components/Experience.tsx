@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { experience } from "@/lib/data";
+import { pick } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function Experience() {
@@ -63,7 +64,7 @@ export function Experience() {
             >
               <GlassPanel className="p-8 md:p-10">
                 <p className="mb-8 text-lg leading-relaxed text-foreground/90 md:text-xl">
-                  {locale === "zh" ? item.story.zh : item.story.en}
+                  {pick(item.story, locale)}
                 </p>
 
                 <div className="space-y-8">
@@ -75,11 +76,11 @@ export function Experience() {
                       <ul className="space-y-3">
                         {tab.items.map((entry) => (
                           <li
-                            key={entry.en}
+                            key={pick(entry, locale)}
                             className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80"
                           >
                             <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                            {locale === "zh" ? entry.zh : entry.en}
+                            {pick(entry, locale)}
                           </li>
                         ))}
                       </ul>

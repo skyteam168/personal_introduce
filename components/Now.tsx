@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { nowItems } from "@/lib/data";
+import { pick } from "@/lib/locale";
 
 export function Now() {
   const { t, locale } = useLanguage();
@@ -34,11 +35,11 @@ export function Now() {
                 <ul className="space-y-4">
                   {items.map((item) => (
                     <li
-                      key={item.en}
+                      key={pick(item, locale)}
                       className="flex items-start gap-3 text-sm leading-relaxed text-foreground/85"
                     >
                       <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                      {locale === "zh" ? item.zh : item.en}
+                      {pick(item, locale)}
                     </li>
                   ))}
                 </ul>

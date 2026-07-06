@@ -7,7 +7,7 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { AuthButton } from "@/components/auth/AuthButton";
-import { cn } from "@/lib/utils";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 
 const navItems = [
   { key: "about" as const, href: "/#about" },
@@ -79,30 +79,11 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center rounded-full border border-foreground/[0.08] p-0.5 sm:flex">
-            <button
-              onClick={() => setLocale("zh")}
-              className={cn(
-                "rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
-                locale === "zh"
-                  ? "bg-foreground text-background"
-                  : "text-muted hover:text-foreground"
-              )}
-            >
-              中文
-            </button>
-            <button
-              onClick={() => setLocale("en")}
-              className={cn(
-                "rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
-                locale === "en"
-                  ? "bg-foreground text-background"
-                  : "text-muted hover:text-foreground"
-              )}
-            >
-              EN
-            </button>
-          </div>
+          <LocaleSwitcher
+            locale={locale}
+            setLocale={setLocale}
+            className="hidden sm:flex"
+          />
 
           {mounted && (
             <button
@@ -140,6 +121,11 @@ export function Navbar() {
         >
           <div className="absolute top-0 right-0 left-0 h-px bg-foreground/10" />
           <div className="flex flex-col gap-1 px-6 py-4">
+            <LocaleSwitcher
+              locale={locale}
+              setLocale={setLocale}
+              className="mb-3 w-fit"
+            />
             {navItems.map((item) => (
               <Link
                 key={item.key}

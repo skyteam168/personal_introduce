@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { personalInfo, availability } from "@/lib/data";
+import { pick } from "@/lib/locale";
 
 const contactLinks = [
   {
@@ -85,9 +86,7 @@ export function Contact() {
             <FadeIn>
               <div className="mb-6 flex items-center gap-2 text-sm text-muted">
                 <MapPin className="h-4 w-4" />
-                {locale === "zh"
-                  ? personalInfo.location.zh
-                  : personalInfo.location.en}
+                {pick(personalInfo.location, locale)}
               </div>
             </FadeIn>
 

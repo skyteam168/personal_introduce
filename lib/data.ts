@@ -1,3 +1,5 @@
+import type { Localized } from "@/lib/locale";
+
 export type ProficiencyLevel = "expert" | "advanced" | "intermediate";
 
 export interface Skill {
@@ -17,21 +19,21 @@ export interface ExperienceItem {
   role: string;
   company: string;
   stage: "network" | "infra" | "leader" | "ai";
-  story: { zh: string; en: string };
-  achievements: { zh: string; en: string }[];
-  businessImpact: { zh: string; en: string }[];
-  leadership: { zh: string; en: string }[];
-  techEvolution: { zh: string; en: string }[];
+  story: Localized;
+  achievements: Localized[];
+  businessImpact: Localized[];
+  leadership: Localized[];
+  techEvolution: Localized[];
 }
 
 export interface Project {
   slug: string;
-  title: { zh: string; en: string };
-  description: { zh: string; en: string };
-  businessValue: { zh: string; en: string };
-  challenges: { zh: string; en: string }[];
-  solutions: { zh: string; en: string }[];
-  result: { zh: string; en: string };
+  title: Localized;
+  description: Localized;
+  businessValue: Localized;
+  challenges: Localized[];
+  solutions: Localized[];
+  result: Localized;
   tags: string[];
   featured: boolean;
   stars: number;
@@ -42,25 +44,25 @@ export interface Project {
   coverImage?: string;
   architecture: string[];
   tech: string[];
-  screenshots?: { src: string; alt: { zh: string; en: string } }[];
+  screenshots?: { src: string; alt: Localized }[];
 }
 
 export interface AchievementStat {
   value: number;
   suffix?: string;
   prefix?: string;
-  label: { zh: string; en: string };
+  label: Localized;
 }
 
 export interface Certificate {
-  name: { zh: string; en: string };
-  issuer: { zh: string; en: string };
+  name: Localized;
+  issuer: Localized;
   year?: string;
   status: "active" | "planned";
 }
 
 export const personalInfo = {
-  name: { zh: "杨晓伟", en: "Xiaowei Yang" },
+  name: { zh: "杨晓伟", en: "Xiaowei Yang", vi: "Xiaowei Yang" },
   email: "jamesyang@benlutech.com",
   github: "https://github.com/skyteam168",
   facebook: "https://www.facebook.com/profile.php?id=100009203928990",
@@ -69,7 +71,7 @@ export const personalInfo = {
   wecomQr: "/images/wecom-qr.png",
   photo: "/avatar.svg",
   resume: "/resume.pdf",
-  location: { zh: "越南 · 远程可用", en: "Vietnam · Open to Remote" },
+  location: { zh: "越南 · 远程可用", en: "Vietnam · Open to Remote", vi: "Việt Nam · Sẵn sàng làm việc từ xa" },
 };
 
 export const availability = {
@@ -80,16 +82,16 @@ export const availability = {
 };
 
 export const achievementStats: AchievementStat[] = [
-  { value: 9, suffix: "+", label: { zh: "年行业经验", en: "Years Experience" } },
-  { value: 300, suffix: "+", label: { zh: "服务器管理", en: "Servers Managed" } },
-  { value: 1000, suffix: "+", label: { zh: "网络设备", en: "Network Devices" } },
-  { value: 20, suffix: "+", label: { zh: "企业级项目", en: "Enterprise Projects" } },
-  { value: 24, suffix: "×7", label: { zh: "基础设施保障", en: "Infrastructure Uptime" } },
+  { value: 9, suffix: "+", label: { zh: "年行业经验", en: "Years Experience", vi: "Năm kinh nghiệm" } },
+  { value: 300, suffix: "+", label: { zh: "服务器管理", en: "Servers Managed", vi: "Máy chủ quản lý" } },
+  { value: 1000, suffix: "+", label: { zh: "网络设备", en: "Network Devices", vi: "Thiết bị mạng" } },
+  { value: 20, suffix: "+", label: { zh: "企业级项目", en: "Enterprise Projects", vi: "Dự án doanh nghiệp" } },
+  { value: 24, suffix: "×7", label: { zh: "基础设施保障", en: "Infrastructure Uptime", vi: "Hạ tầng vận hành 24×7" } },
 ];
 
 export const achievementTextStat = {
   value: "Millions",
-  label: { zh: "生产环境请求", en: "Production Requests" },
+  label: { zh: "生产环境请求", en: "Production Requests", vi: "Yêu cầu production" },
 };
 
 export const capabilityDomains: CapabilityDomain[] = [
@@ -170,22 +172,55 @@ export const experience: ExperienceItem[] = [
     story: {
       zh: "从一线基础设施负责人，到推动 AI 进入生产环境的 IT 领导者。",
       en: "From hands-on infrastructure owner to IT leader bringing AI into production.",
+      vi: "Từ người phụ trách hạ tầng trực tiếp đến lãnh đạo IT đưa AI vào môi trường production.",
     },
     achievements: [
-      { zh: "主导海外园区网络架构与跨境专线落地", en: "Led overseas campus network architecture & cross-border dedicated lines" },
-      { zh: "构建 7×24 监控告警与容灾体系", en: "Built 7×24 monitoring, alerting & disaster recovery" },
-      { zh: "推动 AI Platform 与 ERP/MES 智能化改造", en: "Drove AI Platform & ERP/MES intelligence initiatives" },
+      {
+        zh: "主导海外园区网络架构与跨境专线落地",
+        en: "Led overseas campus network architecture & cross-border dedicated lines",
+        vi: "Chủ trì kiến trúc mạng khu công nghiệp nước ngoài và triển khai đường truyền chuyên dụng xuyên biên giới",
+      },
+      {
+        zh: "构建 7×24 监控告警与容灾体系",
+        en: "Built 7×24 monitoring, alerting & disaster recovery",
+        vi: "Xây dựng hệ thống giám sát, cảnh báo và khôi phục thảm họa 7×24",
+      },
+      {
+        zh: "推动 AI Platform 与 ERP/MES 智能化改造",
+        en: "Drove AI Platform & ERP/MES intelligence initiatives",
+        vi: "Thúc đẩy nền tảng AI và chuyển đổi thông minh hóa ERP/MES",
+      },
     ],
     businessImpact: [
-      { zh: "支撑海外制造园区稳定运行，降低网络与系统故障停机", en: "Kept overseas manufacturing campuses running with fewer outages" },
-      { zh: "将 AI Agent 引入审批与运维流程，缩短响应时间", en: "Introduced AI Agents into approval & ops workflows, faster response" },
+      {
+        zh: "支撑海外制造园区稳定运行，降低网络与系统故障停机",
+        en: "Kept overseas manufacturing campuses running with fewer outages",
+        vi: "Đảm bảo vận hành ổn định khu sản xuất nước ngoài, giảm thời gian ngừng hoạt động do sự cố mạng và hệ thống",
+      },
+      {
+        zh: "将 AI Agent 引入审批与运维流程，缩短响应时间",
+        en: "Introduced AI Agents into approval & ops workflows, faster response",
+        vi: "Đưa AI Agent vào quy trình phê duyệt và vận hành, rút ngắn thời gian phản hồi",
+      },
     ],
     leadership: [
-      { zh: "海外 IT 团队负责人，统筹网络、服务器、机房与业务系统", en: "Led overseas IT team across network, servers, datacenter & business systems" },
-      { zh: "跨部门推动数字化与 AI 落地", en: "Drove digital & AI initiatives across departments" },
+      {
+        zh: "海外 IT 团队负责人，统筹网络、服务器、机房与业务系统",
+        en: "Led overseas IT team across network, servers, datacenter & business systems",
+        vi: "Trưởng nhóm IT nước ngoài, điều phối mạng, máy chủ, trung tâm dữ liệu và hệ thống nghiệp vụ",
+      },
+      {
+        zh: "跨部门推动数字化与 AI 落地",
+        en: "Drove digital & AI initiatives across departments",
+        vi: "Thúc đẩy chuyển đổi số và triển khai AI xuyên phòng ban",
+      },
     ],
     techEvolution: [
-      { zh: "基础设施 → 自动化运维 → AI Agent 生产落地", en: "Infrastructure → Ops automation → Production AI Agents" },
+      {
+        zh: "基础设施 → 自动化运维 → AI Agent 生产落地",
+        en: "Infrastructure → Ops automation → Production AI Agents",
+        vi: "Hạ tầng → Vận hành tự động → AI Agent trong production",
+      },
     ],
   },
   {
@@ -196,20 +231,45 @@ export const experience: ExperienceItem[] = [
     story: {
       zh: "深入服务器、网络与机房一线，建立自动化运维能力。",
       en: "Deep in servers, networks & datacenter — building automation muscle.",
+      vi: "Làm việc trực tiếp với máy chủ, mạng và trung tâm dữ liệu — xây dựng năng lực vận hành tự động.",
     },
     achievements: [
-      { zh: "Linux/Windows 服务器运维与性能调优", en: "Linux/Windows server ops & performance tuning" },
-      { zh: "核心交换机、防火墙策略与故障排查", en: "Core switch, firewall policies & troubleshooting" },
-      { zh: "Python/Shell 自动化脚本体系", en: "Python/Shell automation scripting" },
+      {
+        zh: "Linux/Windows 服务器运维与性能调优",
+        en: "Linux/Windows server ops & performance tuning",
+        vi: "Vận hành và tối ưu hiệu năng máy chủ Linux/Windows",
+      },
+      {
+        zh: "核心交换机、防火墙策略与故障排查",
+        en: "Core switch, firewall policies & troubleshooting",
+        vi: "Switch lõi, chính sách tường lửa và xử lý sự cố",
+      },
+      {
+        zh: "Python/Shell 自动化脚本体系",
+        en: "Python/Shell automation scripting",
+        vi: "Hệ thống script tự động hóa Python/Shell",
+      },
     ],
     businessImpact: [
-      { zh: "提升系统稳定性，减少重复性人工运维", en: "Improved stability, reduced manual repetitive ops" },
+      {
+        zh: "提升系统稳定性，减少重复性人工运维",
+        en: "Improved stability, reduced manual repetitive ops",
+        vi: "Nâng cao độ ổn định hệ thống, giảm công việc vận hành thủ công lặp lại",
+      },
     ],
     leadership: [
-      { zh: "作为技术骨干支撑多厂区 IT 运维", en: "Technical backbone for multi-site IT operations" },
+      {
+        zh: "作为技术骨干支撑多厂区 IT 运维",
+        en: "Technical backbone for multi-site IT operations",
+        vi: "Là trụ cột kỹ thuật hỗ trợ vận hành IT đa nhà máy",
+      },
     ],
     techEvolution: [
-      { zh: "运维工程师 → 基础设施工程师", en: "Ops Engineer → Infrastructure Engineer" },
+      {
+        zh: "运维工程师 → 基础设施工程师",
+        en: "Ops Engineer → Infrastructure Engineer",
+        vi: "Kỹ sư vận hành → Kỹ sư hạ tầng",
+      },
     ],
   },
   {
@@ -220,18 +280,39 @@ export const experience: ExperienceItem[] = [
     story: {
       zh: "从布线、交换机到三层架构 — 企业网络的起点。",
       en: "From cabling and switches to three-tier architecture — where it all started.",
+      vi: "Từ đi dây, switch đến kiến trúc ba tầng — điểm khởi đầu của mạng doanh nghiệp.",
     },
     achievements: [
-      { zh: "企业三层网络架构规划与分阶段实施", en: "Enterprise three-tier network planning & phased rollout" },
-      { zh: "路由器、交换机、无线 AP 部署与调试", en: "Router, switch & wireless AP deployment" },
-      { zh: "通过软考网络工程师（中级）认证", en: "Earned Network Engineer (Intermediate) certification" },
+      {
+        zh: "企业三层网络架构规划与分阶段实施",
+        en: "Enterprise three-tier network planning & phased rollout",
+        vi: "Lập kế hoạch và triển khai theo giai đoạn kiến trúc mạng ba tầng doanh nghiệp",
+      },
+      {
+        zh: "路由器、交换机、无线 AP 部署与调试",
+        en: "Router, switch & wireless AP deployment",
+        vi: "Triển khai và cấu hình router, switch và điểm truy cập không dây",
+      },
+      {
+        zh: "通过软考网络工程师（中级）认证",
+        en: "Earned Network Engineer (Intermediate) certification",
+        vi: "Đạt chứng chỉ Kỹ sư Mạng (Trung cấp) qua kỳ thi quốc gia Trung Quốc",
+      },
     ],
     businessImpact: [
-      { zh: "为后续大规模基础设施扩展奠定网络底座", en: "Laid network foundation for later infrastructure scale-up" },
+      {
+        zh: "为后续大规模基础设施扩展奠定网络底座",
+        en: "Laid network foundation for later infrastructure scale-up",
+        vi: "Đặt nền tảng mạng cho việc mở rộng hạ tầng quy mô lớn sau này",
+      },
     ],
     leadership: [],
     techEvolution: [
-      { zh: "网络工程师 — 职业起点", en: "Network Engineer — career foundation" },
+      {
+        zh: "网络工程师 — 职业起点",
+        en: "Network Engineer — career foundation",
+        vi: "Kỹ sư mạng — Khởi đầu sự nghiệp",
+      },
     ],
   },
 ];
@@ -239,26 +320,45 @@ export const experience: ExperienceItem[] = [
 export const projects: Project[] = [
   {
     slug: "ai-agent-os",
-    title: { zh: "AI Agent OS", en: "AI Agent OS" },
+    title: { zh: "AI Agent OS", en: "AI Agent OS", vi: "AI Agent OS" },
     description: {
       zh: "企业级 AI Agent 操作系统 — 规划、工具调用与记忆管理的生产级编排平台。",
       en: "Enterprise AI Agent operating system — production-grade orchestration for planning, tool use, and memory.",
+      vi: "Hệ điều hành AI Agent doanh nghiệp — nền tảng điều phối production cho lập kế hoạch, gọi công cụ và quản lý bộ nhớ.",
     },
     businessValue: {
       zh: "让 AI 从实验走向可复用的企业工作流，降低集成成本。",
       en: "Move AI from experiments to reusable enterprise workflows with lower integration cost.",
+      vi: "Đưa AI từ thử nghiệm sang quy trình doanh nghiệp tái sử dụng được, giảm chi phí tích hợp.",
     },
     challenges: [
-      { zh: "多模型、多工具、多会话的状态管理与可靠性", en: "State management & reliability across models, tools, and sessions" },
-      { zh: "生产环境对延迟与可观测性的要求", en: "Production demands for latency and observability" },
+      {
+        zh: "多模型、多工具、多会话的状态管理与可靠性",
+        en: "State management & reliability across models, tools, and sessions",
+        vi: "Quản lý trạng thái và độ tin cậy xuyên suốt nhiều mô hình, công cụ và phiên làm việc",
+      },
+      {
+        zh: "生产环境对延迟与可观测性的要求",
+        en: "Production demands for latency and observability",
+        vi: "Yêu cầu về độ trễ và khả năng quan sát trong môi trường production",
+      },
     ],
     solutions: [
-      { zh: "Planner + MCP + Skills 分层架构，Redis 持久化记忆", en: "Planner + MCP + Skills layered architecture with Redis-backed memory" },
-      { zh: "FastAPI 服务化部署，支持多 Agent 编排", en: "FastAPI service deployment with multi-agent orchestration" },
+      {
+        zh: "Planner + MCP + Skills 分层架构，Redis 持久化记忆",
+        en: "Planner + MCP + Skills layered architecture with Redis-backed memory",
+        vi: "Kiến trúc phân tầng Planner + MCP + Skills, bộ nhớ bền vững trên Redis",
+      },
+      {
+        zh: "FastAPI 服务化部署，支持多 Agent 编排",
+        en: "FastAPI service deployment with multi-agent orchestration",
+        vi: "Triển khai dịch vụ FastAPI, hỗ trợ điều phối đa Agent",
+      },
     ],
     result: {
       zh: "支撑内部 AI 自动化场景，Agent 可稳定调用企业工具链。",
       en: "Powers internal AI automation — Agents reliably invoke enterprise toolchains.",
+      vi: "Hỗ trợ các kịch bản tự động hóa AI nội bộ — Agent gọi ổn định chuỗi công cụ doanh nghiệp.",
     },
     tags: ["FastAPI", "Redis", "MCP", "LLM", "Agent"],
     featured: true,
@@ -269,32 +369,55 @@ export const projects: Project[] = [
     screenshots: [
       {
         src: "/images/projects/ai-agent-os/screenshot-1.png",
-        alt: { zh: "AI Agent OS 架构界面", en: "AI Agent OS architecture UI" },
+        alt: {
+          zh: "AI Agent OS 架构界面",
+          en: "AI Agent OS architecture UI",
+          vi: "Giao diện kiến trúc AI Agent OS",
+        },
       },
     ],
   },
   {
     slug: "rag",
-    title: { zh: "RAG 知识库系统", en: "RAG Knowledge System" },
+    title: { zh: "RAG 知识库系统", en: "RAG Knowledge System", vi: "Hệ thống tri thức RAG" },
     description: {
       zh: "企业文档检索增强生成 — 让组织知识可被 AI 安全、准确地调用。",
       en: "Enterprise retrieval-augmented generation — organizational knowledge, safely accessible to AI.",
+      vi: "Retrieval-Augmented Generation doanh nghiệp — tri thức tổ chức được AI truy cập an toàn và chính xác.",
     },
     businessValue: {
       zh: "将分散的企业文档转化为可对话的知识资产。",
       en: "Turn scattered enterprise documents into conversational knowledge assets.",
+      vi: "Chuyển tài liệu doanh nghiệp phân tán thành tài sản tri thức có thể đối thoại.",
     },
     challenges: [
-      { zh: "文档质量参差与检索准确率", en: "Variable document quality and retrieval accuracy" },
-      { zh: "多轮对话中的上下文一致性", en: "Context consistency in multi-turn conversations" },
+      {
+        zh: "文档质量参差与检索准确率",
+        en: "Variable document quality and retrieval accuracy",
+        vi: "Chất lượng tài liệu không đồng nhất và độ chính xác truy xuất",
+      },
+      {
+        zh: "多轮对话中的上下文一致性",
+        en: "Context consistency in multi-turn conversations",
+        vi: "Tính nhất quán ngữ cảnh trong hội thoại nhiều lượt",
+      },
     ],
     solutions: [
-      { zh: "向量化管道 + 语义检索 + 重排序", en: "Vectorization pipeline + semantic search + reranking" },
-      { zh: "FastAPI 服务层与多模型适配", en: "FastAPI service layer with multi-model support" },
+      {
+        zh: "向量化管道 + 语义检索 + 重排序",
+        en: "Vectorization pipeline + semantic search + reranking",
+        vi: "Pipeline vector hóa + tìm kiếm ngữ nghĩa + sắp xếp lại kết quả",
+      },
+      {
+        zh: "FastAPI 服务层与多模型适配",
+        en: "FastAPI service layer with multi-model support",
+        vi: "Tầng dịch vụ FastAPI với hỗ trợ đa mô hình",
+      },
     ],
     result: {
       zh: "支撑内部知识问答与运维文档检索场景。",
       en: "Powers internal Q&A and ops documentation retrieval.",
+      vi: "Hỗ trợ hỏi đáp tri thức nội bộ và truy xuất tài liệu vận hành.",
     },
     tags: ["RAG", "Vector DB", "Embedding", "LLM"],
     featured: true,
@@ -304,26 +427,45 @@ export const projects: Project[] = [
   },
   {
     slug: "infra-platform",
-    title: { zh: "企业基础设施平台", en: "Enterprise Infrastructure Platform" },
+    title: { zh: "企业基础设施平台", en: "Enterprise Infrastructure Platform", vi: "Nền tảng hạ tầng doanh nghiệp" },
     description: {
       zh: "制造业园区级基础设施 — 网络、虚拟化、存储、机房与统一监控。",
       en: "Manufacturing campus infrastructure — network, virtualization, storage, datacenter & unified monitoring.",
+      vi: "Hạ tầng cấp khu công nghiệp sản xuất — mạng, ảo hóa, lưu trữ, trung tâm dữ liệu và giám sát thống nhất.",
     },
     businessValue: {
       zh: "为海外制造业务提供稳定、可扩展的 IT 底座。",
       en: "Stable, scalable IT foundation for overseas manufacturing operations.",
+      vi: "Nền tảng IT ổn định, có thể mở rộng cho hoạt động sản xuất nước ngoài.",
     },
     challenges: [
-      { zh: "跨境网络延迟与多园区互联", en: "Cross-border latency and multi-campus connectivity" },
-      { zh: "7×24 监控与快速故障定位", en: "7×24 monitoring and rapid fault isolation" },
+      {
+        zh: "跨境网络延迟与多园区互联",
+        en: "Cross-border latency and multi-campus connectivity",
+        vi: "Độ trễ mạng xuyên biên giới và kết nối đa khu công nghiệp",
+      },
+      {
+        zh: "7×24 监控与快速故障定位",
+        en: "7×24 monitoring and rapid fault isolation",
+        vi: "Giám sát 7×24 và cô lập sự cố nhanh chóng",
+      },
     ],
     solutions: [
-      { zh: "三层网络 + 专线 + 防火墙策略体系", en: "Three-tier network + dedicated lines + firewall policies" },
-      { zh: "VMware 集群 + Zabbix/Grafana 统一监控", en: "VMware clusters + Zabbix/Grafana unified monitoring" },
+      {
+        zh: "三层网络 + 专线 + 防火墙策略体系",
+        en: "Three-tier network + dedicated lines + firewall policies",
+        vi: "Mạng ba tầng + đường truyền chuyên dụng + hệ thống chính sách tường lửa",
+      },
+      {
+        zh: "VMware 集群 + Zabbix/Grafana 统一监控",
+        en: "VMware clusters + Zabbix/Grafana unified monitoring",
+        vi: "Cụm VMware + giám sát thống nhất Zabbix/Grafana",
+      },
     ],
     result: {
       zh: "支撑 300+ 服务器与 1000+ 网络设备稳定运行。",
       en: "Supports 300+ servers and 1000+ network devices in production.",
+      vi: "Vận hành ổn định hơn 300 máy chủ và hơn 1000 thiết bị mạng trong production.",
     },
     tags: ["Network", "VMware", "Datacenter", "Zabbix"],
     featured: true,
@@ -333,24 +475,35 @@ export const projects: Project[] = [
   },
   {
     slug: "itsm",
-    title: { zh: "ITSM 智能运维", en: "ITSM Intelligent Ops" },
+    title: { zh: "ITSM 智能运维", en: "ITSM Intelligent Ops", vi: "Vận hành thông minh ITSM" },
     description: {
       zh: "覆盖服务器、网络、硬件的全栈 IT 服务管理平台。",
       en: "Full-stack IT service platform for servers, networks, and hardware.",
+      vi: "Nền tảng dịch vụ IT full-stack cho máy chủ, mạng và phần cứng.",
     },
     businessValue: {
       zh: "缩短故障恢复时间，将运维经验沉淀为可复用知识。",
       en: "Shorter MTTR — operational knowledge captured and reused.",
+      vi: "Rút ngắn thời gian khôi phục sự cố — lưu giữ và tái sử dụng kinh nghiệm vận hành.",
     },
     challenges: [
-      { zh: "告警风暴与工单流转效率", en: "Alert storms and ticket workflow efficiency" },
+      {
+        zh: "告警风暴与工单流转效率",
+        en: "Alert storms and ticket workflow efficiency",
+        vi: "Bão cảnh báo và hiệu quả luồng xử lý ticket",
+      },
     ],
     solutions: [
-      { zh: "监控告警 + AI 辅助排障 + 知识库", en: "Monitoring + AI-assisted diagnosis + knowledge base" },
+      {
+        zh: "监控告警 + AI 辅助排障 + 知识库",
+        en: "Monitoring + AI-assisted diagnosis + knowledge base",
+        vi: "Giám sát cảnh báo + chẩn đoán hỗ trợ AI + cơ sở tri thức",
+      },
     ],
     result: {
       zh: "提升一线运维响应速度与问题闭环率。",
       en: "Faster first response and higher issue closure rate.",
+      vi: "Tăng tốc phản hồi tuyến đầu và tỷ lệ đóng vòng sự cố.",
     },
     tags: ["ITSM", "Zabbix", "AI Agent"],
     featured: false,
@@ -360,24 +513,35 @@ export const projects: Project[] = [
   },
   {
     slug: "erp",
-    title: { zh: "ERP 智能化改造", en: "ERP Intelligence Upgrade" },
+    title: { zh: "ERP 智能化改造", en: "ERP Intelligence Upgrade", vi: "Nâng cấp thông minh hóa ERP" },
     description: {
       zh: "制造业 ERP 的 AI 增强 — 报表自动化、智能审批与数据洞察。",
       en: "AI-enhanced manufacturing ERP — automated reporting, smart approvals, data insights.",
+      vi: "ERP sản xuất được tăng cường AI — báo cáo tự động, phê duyệt thông minh và phân tích dữ liệu.",
     },
     businessValue: {
       zh: "减少手工报表与审批延迟，提升决策效率。",
       en: "Less manual reporting and approval delay — faster decisions.",
+      vi: "Giảm báo cáo thủ công và độ trễ phê duyệt — ra quyết định nhanh hơn.",
     },
     challenges: [
-      { zh: "ERP 系统封闭与数据孤岛", en: "Closed ERP systems and data silos" },
+      {
+        zh: "ERP 系统封闭与数据孤岛",
+        en: "Closed ERP systems and data silos",
+        vi: "Hệ thống ERP khép kín và silo dữ liệu",
+      },
     ],
     solutions: [
-      { zh: "AI 中间层 + 自动化报表 + 审批 Agent", en: "AI middleware + automated reports + approval Agents" },
+      {
+        zh: "AI 中间层 + 自动化报表 + 审批 Agent",
+        en: "AI middleware + automated reports + approval Agents",
+        vi: "Tầng trung gian AI + báo cáo tự động + Agent phê duyệt",
+      },
     ],
     result: {
       zh: "关键报表生成时间从小时级降至分钟级。",
       en: "Key report generation from hours to minutes.",
+      vi: "Thời gian tạo báo cáo quan trọng giảm từ giờ xuống phút.",
     },
     tags: ["ERP", "Automation", "AI"],
     featured: false,
@@ -387,24 +551,35 @@ export const projects: Project[] = [
   },
   {
     slug: "production-ai",
-    title: { zh: "Production AI", en: "Production AI" },
+    title: { zh: "Production AI", en: "Production AI", vi: "Production AI" },
     description: {
       zh: "生产环境 AI 部署 — 模型服务、监控告警与高可用架构。",
       en: "Production AI deployment — model serving, monitoring, and high availability.",
+      vi: "Triển khai AI production — phục vụ mô hình, giám sát cảnh báo và kiến trúc high availability.",
     },
     businessValue: {
       zh: "让 AI 服务具备企业级 SLA 与可运维性。",
       en: "AI services with enterprise SLA and operability.",
+      vi: "Dịch vụ AI đạt SLA doanh nghiệp và khả năng vận hành.",
     },
     challenges: [
-      { zh: "模型服务的稳定性与扩缩容", en: "Model serving stability and scaling" },
+      {
+        zh: "模型服务的稳定性与扩缩容",
+        en: "Model serving stability and scaling",
+        vi: "Độ ổn định và khả năng scale của dịch vụ mô hình",
+      },
     ],
     solutions: [
-      { zh: "容器化部署 + 负载均衡 + 监控告警", en: "Containerized deployment + load balancing + monitoring" },
+      {
+        zh: "容器化部署 + 负载均衡 + 监控告警",
+        en: "Containerized deployment + load balancing + monitoring",
+        vi: "Triển khai container hóa + cân bằng tải + giám sát cảnh báo",
+      },
     ],
     result: {
       zh: "AI 服务可 7×24 稳定对外提供 API。",
       en: "AI services available 24×7 via stable APIs.",
+      vi: "Dịch vụ AI cung cấp API ổn định 24×7.",
     },
     tags: ["MLOps", "Docker", "Monitoring"],
     featured: false,
@@ -416,69 +591,117 @@ export const projects: Project[] = [
 
 export const certificates: Certificate[] = [
   {
-    name: { zh: "网络工程师(中级)", en: "Network Engineer (Intermediate)" },
-    issuer: { zh: "软考（中国）", en: "China Computer Technology" },
+    name: { zh: "网络工程师(中级)", en: "Network Engineer (Intermediate)", vi: "Kỹ sư Mạng (Trung cấp)" },
+    issuer: { zh: "软考（中国）", en: "China Computer Technology", vi: "Kỳ thi Công nghệ Máy tính Trung Quốc" },
     year: "2024",
     status: "active",
   },
   {
-    name: { zh: "软件设计师(中级)", en: "Software Designer (Intermediate)" },
-    issuer: { zh: "软考（中国）", en: "China Computer Technology" },
+    name: { zh: "软件设计师(中级)", en: "Software Designer (Intermediate)", vi: "Nhà thiết kế Phần mềm (Trung cấp)" },
+    issuer: { zh: "软考（中国）", en: "China Computer Technology", vi: "Kỳ thi Công nghệ Máy tính Trung Quốc" },
     year: "2025",
     status: "active",
   },
   {
-    name: { zh: "网络规划设计师(高级)", en: "Network Planning Designer (Advanced)" },
-    issuer: { zh: "软考（中国）", en: "China Computer Technology" },
+    name: { zh: "网络规划设计师(高级)", en: "Network Planning Designer (Advanced)", vi: "Nhà thiết kế Quy hoạch Mạng (Cao cấp)" },
+    issuer: { zh: "软考（中国）", en: "China Computer Technology", vi: "Kỳ thi Công nghệ Máy tính Trung Quốc" },
     year: "2026",
     status: "planned",
   },
   {
-    name: { zh: "信息安全工程师(中级)", en: "Information Security Engineer (Intermediate)" },
-    issuer: { zh: "软考（中国）", en: "China Computer Technology" },
+    name: { zh: "信息安全工程师(中级)", en: "Information Security Engineer (Intermediate)", vi: "Kỹ sư An toàn Thông tin (Trung cấp)" },
+    issuer: { zh: "软考（中国）", en: "China Computer Technology", vi: "Kỳ thi Công nghệ Máy tính Trung Quốc" },
     year: "2027",
     status: "planned",
   },
   {
-    name: { zh: "英语 CET-4", en: "English CET-4" },
-    issuer: { zh: "工作语言，听说读写熟练", en: "Fluent in English, speaking, reading, and writing" },
+    name: { zh: "英语 CET-4", en: "English CET-4", vi: "Tiếng Anh CET-4" },
+    issuer: {
+      zh: "工作语言，听说读写熟练",
+      en: "Fluent in English, speaking, reading, and writing",
+      vi: "Ngôn ngữ làm việc, thành thạo nghe nói đọc viết",
+    },
     status: "active",
   },
   {
-    name: { zh: "越南语 B1", en: "Vietnamese B1" },
-    issuer: { zh: "工作语言，听说读写熟练", en: "Fluent in Vietnamese, speaking, reading, and writing" },
+    name: { zh: "越南语 B1", en: "Vietnamese B1", vi: "Tiếng Việt B1" },
+    issuer: {
+      zh: "工作语言，听说读写熟练",
+      en: "Fluent in Vietnamese, speaking, reading, and writing",
+      vi: "Ngôn ngữ làm việc, thành thạo nghe nói đọc viết",
+    },
     status: "active",
   },
   {
-    name: { zh: "阿里云 AIGC 认证", en: "Alibaba Cloud AIGC Certification" },
-    issuer: { zh: "阿里云", en: "Alibaba Cloud" },
+    name: { zh: "阿里云 AIGC 认证", en: "Alibaba Cloud AIGC Certification", vi: "Chứng chỉ AIGC Alibaba Cloud" },
+    issuer: { zh: "阿里云", en: "Alibaba Cloud", vi: "Alibaba Cloud" },
     status: "active",
   },
 ];
 
 export const nowItems = {
   focus: [
-    { zh: "企业 AI Agent 生产落地与架构设计", en: "Production AI Agent architecture & deployment" },
-    { zh: "RAG 知识系统与企业工作流集成", en: "RAG knowledge systems & enterprise workflow integration" },
-    { zh: "基础设施自动化与可观测性", en: "Infrastructure automation & observability" },
+    {
+      zh: "企业 AI Agent 生产落地与架构设计",
+      en: "Production AI Agent architecture & deployment",
+      vi: "Kiến trúc và triển khai AI Agent trong production",
+    },
+    {
+      zh: "RAG 知识系统与企业工作流集成",
+      en: "RAG knowledge systems & enterprise workflow integration",
+      vi: "Hệ thống tri thức RAG và tích hợp quy trình doanh nghiệp",
+    },
+    {
+      zh: "基础设施自动化与可观测性",
+      en: "Infrastructure automation & observability",
+      vi: "Tự động hóa hạ tầng và khả năng quan sát",
+    },
   ],
   learning: [
-    { zh: "大语言模型架构原理（Transformer、注意力机制与预训练范式）", en: "LLM architecture — Transformers, attention, and pre-training paradigms" },
-    { zh: "神经网络基础与推理优化（量化、KV Cache、分布式推理）", en: "Neural network fundamentals & inference optimization (quantization, KV cache, distributed inference)" },
-    { zh: "多模态模型与 Agent 编排框架", en: "Multimodal models & agent orchestration frameworks" },
-    { zh: "Solution Architecture 与云原生最佳实践", en: "Solution architecture & cloud-native best practices" },
-    { zh: "Enterprise AI 治理、安全与可观测性", en: "Enterprise AI governance, security & observability" },
+    {
+      zh: "大语言模型架构原理（Transformer、注意力机制与预训练范式）",
+      en: "LLM architecture — Transformers, attention, and pre-training paradigms",
+      vi: "Kiến trúc mô hình ngôn ngữ lớn — Transformer, cơ chế attention và mô hình tiền huấn luyện",
+    },
+    {
+      zh: "神经网络基础与推理优化（量化、KV Cache、分布式推理）",
+      en: "Neural network fundamentals & inference optimization (quantization, KV cache, distributed inference)",
+      vi: "Nền tảng mạng nơ-ron và tối ưu suy luận (lượng tử hóa, KV Cache, suy luận phân tán)",
+    },
+    {
+      zh: "多模态模型与 Agent 编排框架",
+      en: "Multimodal models & agent orchestration frameworks",
+      vi: "Mô hình đa phương thức và framework điều phối Agent",
+    },
+    {
+      zh: "Solution Architecture 与云原生最佳实践",
+      en: "Solution architecture & cloud-native best practices",
+      vi: "Kiến trúc giải pháp và thực hành tốt nhất cloud-native",
+    },
+    {
+      zh: "Enterprise AI 治理、安全与可观测性",
+      en: "Enterprise AI governance, security & observability",
+      vi: "Quản trị AI doanh nghiệp, bảo mật và khả năng quan sát",
+    },
   ],
   openTo: [
-    { zh: "Enterprise AI Solutions Architect 角色", en: "Enterprise AI Solutions Architect roles" },
-    { zh: "AI 基础设施与数字化咨询", en: "AI infrastructure & digital transformation consulting" },
+    {
+      zh: "Enterprise AI Solutions Architect 角色",
+      en: "Enterprise AI Solutions Architect roles",
+      vi: "Vai trò Enterprise AI Solutions Architect",
+    },
+    {
+      zh: "AI 基础设施与数字化咨询",
+      en: "AI infrastructure & digital transformation consulting",
+      vi: "Tư vấn hạ tầng AI và chuyển đổi số",
+    },
   ],
 };
 
 export const architectureLayers = [
   {
     id: "enterprise-network",
-    label: { en: "Enterprise Network", zh: "企业网络" },
+    label: { en: "Enterprise Network", zh: "企业网络", vi: "Mạng doanh nghiệp" },
     nodes: [
       { id: "wan", label: "WAN / SD-WAN", x: 50, y: 12 },
       { id: "core", label: "Core Switch", x: 50, y: 32 },
@@ -498,7 +721,7 @@ export const architectureLayers = [
   },
   {
     id: "ai-agent",
-    label: { en: "AI Agent Workflow", zh: "AI Agent 工作流" },
+    label: { en: "AI Agent Workflow", zh: "AI Agent 工作流", vi: "Quy trình AI Agent" },
     nodes: [
       { id: "user", label: "User", x: 50, y: 10 },
       { id: "agent", label: "Agent", x: 50, y: 30 },
@@ -520,7 +743,7 @@ export const architectureLayers = [
   },
   {
     id: "rag",
-    label: { en: "RAG Architecture", zh: "RAG 架构" },
+    label: { en: "RAG Architecture", zh: "RAG 架构", vi: "Kiến trúc RAG" },
     nodes: [
       { id: "docs", label: "Documents", x: 20, y: 20 },
       { id: "embed", label: "Embedding", x: 50, y: 20 },
@@ -541,7 +764,7 @@ export const architectureLayers = [
   },
   {
     id: "infrastructure",
-    label: { en: "Infrastructure", zh: "基础设施" },
+    label: { en: "Infrastructure", zh: "基础设施", vi: "Hạ tầng" },
     nodes: [
       { id: "lb", label: "Load Balancer", x: 50, y: 12 },
       { id: "app", label: "App Servers", x: 30, y: 38 },

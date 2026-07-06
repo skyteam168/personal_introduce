@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { CAREER_STAGES } from "@/lib/brand";
+import { pick } from "@/lib/locale";
 
 export function About() {
   const { t, locale } = useLanguage();
@@ -55,16 +56,16 @@ export function About() {
                         stage.future ? "text-accent" : "text-foreground"
                       }`}
                     >
-                      {locale === "zh" ? stage.label.zh : stage.label.en}
+                      {pick(stage.label, locale)}
                     </p>
                     {"hint" in stage && stage.hint && (
                       <p className="mt-1.5 text-xs text-muted">
-                        {locale === "zh" ? stage.hint.zh : stage.hint.en}
+                        {pick(stage.hint, locale)}
                       </p>
                     )}
                     {stage.future && (
                       <p className="mt-2 text-xs text-muted">
-                        {locale === "zh" ? "当前方向" : "Current focus"}
+                        {t.about.currentFocus}
                       </p>
                     )}
                   </GlassPanel>

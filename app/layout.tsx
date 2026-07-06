@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: personalInfo.name.en,
     locale: "en_US",
-    alternateLocale: ["zh_CN"],
+    alternateLocale: ["zh_CN", "vi_VN"],
   },
   twitter: {
     card: "summary_large_image",

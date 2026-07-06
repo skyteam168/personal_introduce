@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import { translations, type Locale } from "@/lib/i18n";
+import { translations } from "@/lib/i18n";
+import { HTML_LANG, type Locale } from "@/lib/locale";
 
 type Translations = (typeof translations)[Locale];
 
@@ -18,7 +19,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
-    document.documentElement.lang = newLocale === "zh" ? "zh-CN" : "en";
+    document.documentElement.lang = HTML_LANG[newLocale];
   }, []);
 
   const t = translations[locale];

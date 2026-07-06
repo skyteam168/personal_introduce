@@ -27,7 +27,7 @@ const inquirySchema = z.object({
   timeline: z.string().trim().max(200).optional(),
   budgetRange: z.string().trim().max(100).optional(),
   location: z.string().trim().max(200).optional(),
-  locale: z.enum(["zh", "en"]).optional(),
+  locale: z.enum(["zh", "en", "vi"]).optional(),
 });
 
 export type SubmitInquiryResult =

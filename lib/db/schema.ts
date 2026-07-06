@@ -162,7 +162,7 @@ export const inquiries = pgTable("inquiry", {
   status: text("status").$type<InquiryStatus>().notNull().default("new"),
   adminNotes: text("adminNotes"),
   ipHash: text("ipHash"),
-  locale: text("locale").$type<"zh" | "en">(),
+  locale: text("locale").$type<"zh" | "en" | "vi">(),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
   updatedAt: timestamp("updatedAt", { mode: "date" }).defaultNow().notNull(),
 });

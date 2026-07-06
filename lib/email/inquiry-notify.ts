@@ -3,12 +3,49 @@ import { headers } from "next/headers";
 import { personalInfo } from "@/lib/data";
 import { getSiteUrl } from "@/lib/site";
 import type { Inquiry } from "@/lib/db/schema";
+import type { Locale } from "@/lib/locale";
 
 const NOTIFY_EMAIL =
   process.env.INQUIRY_NOTIFY_EMAIL?.trim() || personalInfo.email;
 
 const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL?.trim() || "onboarding@resend.dev";
+
+const AUTO_REPLY: Record<
+  Locale,
+  { subject: string; build: (name: string, company: string) => string }
+> = {
+  zh: {
+    subject: "已收到您的合作咨询 — Xiaowei Yang",
+    build: (name, company) => `您好 ${name}，
+
+感谢联系。我已收到来自 ${company} 的咨询，将在 24 小时内回复。
+
+— Xiaowei Yang
+Enterprise AI Solutions Architect
+${getSiteUrl()}`,
+  },
+  en: {
+    subject: "Inquiry received — Xiaowei Yang",
+    build: (name, company) => `Hi ${name},
+
+Thank you for reaching out. I've received your inquiry from ${company} and will respond within 24 hours.
+
+— Xiaowei Yang
+Enterprise AI Solutions Architect
+${getSiteUrl()}`,
+  },
+  vi: {
+    subject: "Đã nhận yêu cầu tư vấn — Xiaowei Yang",
+    build: (name, company) => `Xin chào ${name},
+
+Cảm ơn bạn đã liên hệ. Tôi đã nhận yêu cầu từ ${company} và sẽ phản hồi trong 24 giờ.
+
+— Xiaowei Yang
+Enterprise AI Solutions Architect
+${getSiteUrl()}`,
+  },
+};
 
 export function hashClientIp(ip: string): string {
   return createHash("sha256").update(ip).digest("hex").slice(0, 32);
@@ -58,6 +95,7 @@ function formatInquiryText(inquiry: Inquiry): string {
     inquiry.location ? `Location: ${inquiry.location}` : null,
     inquiry.timeline ? `Timeline: ${inquiry.timeline}` : null,
     inquiry.budgetRange ? `Budget: ${inquiry.budgetRange}` : null,
+    inquiry.locale ? `Locale: ${inquiry.locale}` : null,
     "",
     inquiry.description,
     "",
@@ -76,29 +114,13 @@ export async function notifyNewInquiry(inquiry: Inquiry) {
 }
 
 export async function sendInquiryAutoReply(inquiry: Inquiry) {
-  const isZh = inquiry.locale === "zh";
-  const subject = isZh
-    ? "已收到您的合作咨询 — Xiaowei Yang"
-    : "Inquiry received — Xiaowei Yang";
-  const text = isZh
-    ? `您好 ${inquiry.contactName}，
-
-感谢联系。我已收到来自 ${inquiry.company} 的咨询，将在 24 小时内回复。
-
-— Xiaowei Yang
-Enterprise AI Solutions Architect
-${getSiteUrl()}`
-    : `Hi ${inquiry.contactName},
-
-Thank you for reaching out. I've received your inquiry from ${inquiry.company} and will respond within 24 hours.
-
-— Xiaowei Yang
-Enterprise AI Solutions Architect
-${getSiteUrl()}`;
+  const locale: Locale =
+    inquiry.locale === "zh" || inquiry.locale === "vi" ? inquiry.locale : "en";
+  const template = AUTO_REPLY[locale];
 
   await sendViaResend({
     to: inquiry.email,
-    subject,
-    text,
+    subject: template.subject,
+    text: template.build(inquiry.contactName, inquiry.company),
   });
 }

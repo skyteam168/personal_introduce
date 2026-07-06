@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { architectureLayers } from "@/lib/data";
+import { pick } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function ArchitectureSection() {
@@ -45,7 +46,7 @@ export function ArchitectureSection() {
                     : "glass text-muted hover:text-foreground"
                 )}
               >
-                {locale === "zh" ? layer.label.zh : layer.label.en}
+                {pick(layer.label, locale)}
               </button>
             ))}
           </div>

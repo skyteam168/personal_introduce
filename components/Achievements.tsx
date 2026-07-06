@@ -6,6 +6,7 @@ import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { achievementStats, achievementTextStat } from "@/lib/data";
+import { pick } from "@/lib/locale";
 
 export function Achievements() {
   const { t, locale } = useLanguage();
@@ -31,7 +32,7 @@ export function Achievements() {
                   className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
                 />
                 <p className="mt-3 text-xs leading-relaxed text-muted md:text-sm">
-                  {locale === "zh" ? stat.label.zh : stat.label.en}
+                  {pick(stat.label, locale)}
                 </p>
               </GlassPanel>
             </FadeIn>
@@ -43,9 +44,7 @@ export function Achievements() {
                 {achievementTextStat.value}
               </span>
               <p className="mt-3 text-xs leading-relaxed text-muted md:text-sm">
-                {locale === "zh"
-                  ? achievementTextStat.label.zh
-                  : achievementTextStat.label.en}
+                {pick(achievementTextStat.label, locale)}
               </p>
             </GlassPanel>
           </FadeIn>

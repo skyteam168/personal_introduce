@@ -12,13 +12,13 @@ import {
   workWithMeProcess,
   workWithMeFaq,
 } from "@/lib/work-with-me/content";
+import { pick } from "@/lib/locale";
 
 export function WorkWithMePageContent() {
   const { t, locale } = useLanguage();
   const w = t.workWithMe;
-  const isZh = locale === "zh";
-  const process = isZh ? workWithMeProcess.zh : workWithMeProcess.en;
-  const faq = isZh ? workWithMeFaq.zh : workWithMeFaq.en;
+  const process = workWithMeProcess[locale];
+  const faq = workWithMeFaq[locale];
 
   return (
     <div className="gradient-mesh min-h-screen pt-24 pb-20">
@@ -28,7 +28,7 @@ export function WorkWithMePageContent() {
           className="mb-10 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          {isZh ? "返回首页" : "Back home"}
+          {w.backHome}
         </Link>
 
         <SectionHeading label={w.label} title={w.title} subtitle={w.subtitle} />
@@ -44,23 +44,21 @@ export function WorkWithMePageContent() {
             <FadeIn key={service.id} delay={i * 0.08}>
               <GlassPanel className="p-8 md:p-10">
                 <h3 className="mb-4 text-xl font-semibold text-foreground">
-                  {isZh ? service.title.zh : service.title.en}
+                  {pick(service.title, locale)}
                 </h3>
                 <p className="mb-6 text-sm leading-relaxed text-muted md:text-base">
-                  {isZh ? service.description.zh : service.description.en}
+                  {pick(service.description, locale)}
                 </p>
                 <ul className="space-y-2">
-                  {(isZh ? service.highlights.zh : service.highlights.en).map(
-                    (item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 text-sm text-foreground/85"
-                      >
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                        {item}
-                      </li>
-                    )
-                  )}
+                  {service.highlights[locale].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-sm text-foreground/85"
+                    >
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </GlassPanel>
             </FadeIn>

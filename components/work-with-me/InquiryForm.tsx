@@ -8,6 +8,7 @@ import {
   inquiryTypeLabels,
   budgetRangeOptions,
 } from "@/lib/work-with-me/content";
+import { pick } from "@/lib/locale";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { cn } from "@/lib/utils";
 
@@ -43,8 +44,7 @@ export function InquiryForm() {
     setErrorKey(result.error);
   }
 
-  const budgets =
-    locale === "zh" ? budgetRangeOptions.zh : budgetRangeOptions.en;
+  const budgets = budgetRangeOptions[locale];
 
   return (
     <div id="inquiry">
@@ -88,9 +88,7 @@ export function InquiryForm() {
             <select name="type" required className={inputClass} defaultValue="development">
               {inquiryTypes.map((type) => (
                 <option key={type} value={type}>
-                  {locale === "zh"
-                    ? inquiryTypeLabels[type].zh
-                    : inquiryTypeLabels[type].en}
+                  {pick(inquiryTypeLabels[type], locale)}
                 </option>
               ))}
             </select>
