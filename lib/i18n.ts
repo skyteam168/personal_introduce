@@ -18,9 +18,9 @@ export const translations = {
     hero: {
       name: "杨晓伟",
       title: "Enterprise AI Solutions Architect",
-      tagline: "连接企业基础设施与人工智能。",
+      tagline: "从机房到 AI 生产环境",
       subtitle:
-        "从机房到 AI 生产环境 — 我设计可信赖的企业基础设施，并用 AI 让组织更高效。",
+        "设计可信赖的企业基础设施，并将大模型、Agent 与 RAG 嵌入真实业务 — 守住可靠性、安全边界与可观测性，而非止步于概念验证。九年一线，从网络架构与数据中心到 AI 研发与企业数字化主导：底座与智能，同一条交付路径。",
       ctaProjects: "探索项目",
       ctaResume: "下载简历",
       ctaGithub: "GitHub",
@@ -29,11 +29,11 @@ export const translations = {
     },
     about: {
       label: "About",
-      title: "企业 IT 基础设施 × AI 落地",
+      title: "基础设施与智能，同一套架构思维",
       subtitle:
-        "不是技能清单，而是一条清晰的职业演进 — 从网管到企业数字化与信息化主导。",
+        "九年企业一线演进 — 从机房运维到数字化主导，兼具基础设施交付与 AI 生产落地能力。",
       story:
-        "我同时拥有企业 IT 基础设施、网络架构、软件开发、AI Agent 与企业数字化落地经验。我能独立负责基础设施建设，并用 AI 提升企业效率 — 这是大多数工程师或 AI 开发者无法同时做到的。",
+        "我的职业路径在真实业务环境中逐层深化：先夯实网络与数据中心底座，再延伸至平台开发与 AI 系统构建。今天，我以架构师视角统筹「可运维的基础设施」与「可上线的 AI 能力」—— 将大模型、Agent 与 RAG 嵌入企业流程，同时守住可靠性、安全边界与可观测性。能同时贯通底层设施与智能应用的双栈视角，在单一方向的工程师或开发者中并不常见。",
       journeyTitle: "职业演进",
     },
     achievements: {
@@ -197,9 +197,9 @@ export const translations = {
     hero: {
       name: "Xiaowei Yang",
       title: "Enterprise AI Solutions Architect",
-      tagline: "Bridging Enterprise Infrastructure and Artificial Intelligence.",
+      tagline: "From the datacenter to production AI",
       subtitle:
-        "From the datacenter to production AI — I build reliable enterprise infrastructure and apply AI to make organizations faster.",
+        "Design trustworthy enterprise infrastructure and embed LLMs, Agents, and RAG into real workflows — with reliability, security boundaries, and observability built in, not proof-of-concept demos. Nine years on the front line, from network architecture and datacenters to AI R&D and digitalization leadership: one continuous path from foundation to intelligence.",
       ctaProjects: "Explore Projects",
       ctaResume: "Download Resume",
       ctaGithub: "GitHub",
@@ -208,11 +208,11 @@ export const translations = {
     },
     about: {
       label: "About",
-      title: "Enterprise IT Infrastructure × AI at Scale",
+      title: "Infrastructure and intelligence, one architectural mindset",
       subtitle:
-        "Not a skill dump — a deliberate arc from sysadmin to enterprise digitalization leadership.",
+        "Nine years of enterprise practice — from datacenter operations to digitalization leadership, with both infrastructure delivery and production AI.",
       story:
-        "I combine enterprise IT infrastructure, network architecture, software development, AI Agents, and digital transformation — in one practitioner. I can own infrastructure end-to-end and apply AI to improve how enterprises operate. That's rare.",
+        "My path deepened layer by layer in real business environments: first network and datacenter foundations, then platform engineering and AI systems. Today I work as an architect across operable infrastructure and deployable AI — embedding LLMs, Agents, and RAG into enterprise workflows while holding the line on reliability, security boundaries, and observability. That dual-stack view from metal to models is uncommon in engineers who specialize in only one lane.",
       journeyTitle: "Career Arc",
     },
     achievements: {

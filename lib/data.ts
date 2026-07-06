@@ -463,8 +463,11 @@ export const nowItems = {
     { zh: "基础设施自动化与可观测性", en: "Infrastructure automation & observability" },
   ],
   learning: [
+    { zh: "大语言模型架构原理（Transformer、注意力机制与预训练范式）", en: "LLM architecture — Transformers, attention, and pre-training paradigms" },
+    { zh: "神经网络基础与推理优化（量化、KV Cache、分布式推理）", en: "Neural network fundamentals & inference optimization (quantization, KV cache, distributed inference)" },
+    { zh: "多模态模型与 Agent 编排框架", en: "Multimodal models & agent orchestration frameworks" },
     { zh: "Solution Architecture 与云原生最佳实践", en: "Solution architecture & cloud-native best practices" },
-    { zh: "Enterprise AI 治理与安全", en: "Enterprise AI governance & security" },
+    { zh: "Enterprise AI 治理、安全与可观测性", en: "Enterprise AI governance, security & observability" },
   ],
   openTo: [
     { zh: "Enterprise AI Solutions Architect 角色", en: "Enterprise AI Solutions Architect roles" },

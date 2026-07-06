@@ -3,16 +3,16 @@ export const BRAND = {
   title: "Enterprise AI Solutions Architect",
   titleShort: "Enterprise AI Solutions Architect",
   tagline: {
-    en: "Bridging Enterprise Infrastructure and Artificial Intelligence.",
-    zh: "连接企业基础设施与人工智能。",
+    en: "From the datacenter to production AI",
+    zh: "从机房到 AI 生产环境",
   },
   valueProposition: {
-    en: "I design and deliver enterprise-grade infrastructure, then apply AI to make organizations faster, smarter, and more resilient.",
-    zh: "我负责企业级基础设施的设计与落地，并用 AI 让组织更高效、更智能、更具韧性。",
+    en: "Trustworthy enterprise infrastructure with LLMs, Agents, and RAG in production — nine years from datacenters to digitalization leadership.",
+    zh: "可信赖的企业基础设施，大模型与 Agent 生产落地 — 九年从数据中心到企业数字化主导。",
   },
   differentiator: {
-    en: "Rare combination: datacenter-to-desktop IT leadership, network architecture, production AI systems, and enterprise digital transformation — in one person.",
-    zh: "罕见组合：从机房到桌面的一线 IT 负责人经验、网络架构、生产级 AI 系统与企业数字化落地 —— 集于一身。",
+    en: "Dual-stack architect: operable infrastructure and deployable AI — LLMs, Agents, and RAG in production, with reliability and security built in.",
+    zh: "双栈架构视角：可运维的基础设施与可上线的 AI 能力 — 将大模型、Agent 与 RAG 带入生产，兼顾可靠性与安全边界。",
   },
 } as const;
 
